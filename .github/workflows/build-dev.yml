@@ -1,38 +1,30 @@
-name: Publish to itch.io
+name: Publish dev to GitHub Pages
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - "main"
+
+concurrency:
+  group: pages-main
+  cancel-in-progress: true
 
 env:
   "GODOT_VERSION": "4.7-stable"
 
 jobs:
-  deploy-web:
+  deploy-pages:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Butler
-        run: |
-          wget https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default -O butler.zip
-
-          unzip butler.zip
-          chmod +x butler
-
-      - name: Cache Godot
-        id: cache-godot
-        uses: actions/cache@v4
-        with:
-          path: Godot_v${{ env.GODOT_VERSION }}_linux.x86_64.zip
-          key: godot-${{ env.GODOT_VERSION }}-linux
-
       - name: Download Godot
-        if: steps.cache-godot.outputs.cache-hit != 'true'
         run: |
           wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip
+
           unzip Godot_v${GODOT_VERSION}_linux.x86_64.zip
 
       - name: Cache Godot export templates
@@ -69,10 +61,19 @@ jobs:
 
           "$GODOT_BIN" --headless --export-release "Web" build/web/index.html
       
-      - name: Upload to itch.io
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+      - name: Add coi-service-worker
         run: |
-          ./butler push build/web MadAvidCoder/game-jam:web
-      
-      
+          git clone https://github.com/gzuidhof/coi-serviceworker.git
+          mv coi-serviceworker/coi-serviceworker.js build/web/coi-serviceworker.js
+          sed -i '3 i <script src="coi-serviceworker.js"></script>' build/web/index.html
+
+      - name: Upload to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
+          publish_branch: gh-pages
+          destination_dir: latest
+          user_name: "github-ci[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_message: "Publish to gh-pages"
