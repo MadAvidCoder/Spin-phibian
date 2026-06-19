@@ -39,6 +39,7 @@ jobs:
       - name: Delete Environment
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.ENV_DELETE_TOKEN }}
           script: |
             const envName = `pr-${context.payload.pull_request.number}`;
 
