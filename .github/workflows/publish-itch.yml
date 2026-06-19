@@ -57,6 +57,6 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          ./butler push build/web MadAvidCoder/Game_Jam:web
+          ./butler push build/web MadAvidCoder/game-jam:web
       
       
