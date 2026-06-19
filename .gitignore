@@ -1,0 +1,6 @@
+.godot/
+.import/
+.idea/
+*.tmp
+.nomedia
+~*.dll

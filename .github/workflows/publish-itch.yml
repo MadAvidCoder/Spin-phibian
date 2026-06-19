@@ -1,0 +1,61 @@
+name: Publish to itch.io
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  "GODOT_VERSION": "4.7-stable"
+
+jobs:
+  deploy-web:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Butler
+        run: |
+          wget https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default -O butler.zip
+
+          unzip butler.zip
+          chmod +x butler
+
+      - name: Download Godot
+        run: |
+          wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip
+
+          unzip Godot_v${GODOT_VERSION}_linux.x86_64.zip
+
+      - name: Download Export Templates
+        run: |
+          wget https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_export_templates.tpz
+
+          mkdir -p ~/.local/share/godot/export_templates/4.7.stable
+
+          unzip Godot_v${GODOT_VERSION}_export_templates.tpz -d ~/.local/share/godot/export_templates/4.7.stable
+
+      - name: Find Godot executable
+        run: |
+          GODOT_BIN=$(find . -type f -name "Godot_v${GODOT_VERSION}_linux.x86_64" | head -n1)
+          chmod +x "$GODOT_BIN"
+          echo "GODOT_BIN=$GODOT_BIN" >> $GITHUB_ENV
+      
+      - name: Import Project
+        run: |
+          "$GODOT_BIN" --headless --import
+
+      - name: Export Web
+        run: |
+          mkdir -p build/web
+
+          "$GODOT_BIN" --headless --export-release "Web" build/web/index.html
+      
+      - name: Upload to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          ./butler push build/web MadAvidCoder/Game_Jam:web
+      
+      
