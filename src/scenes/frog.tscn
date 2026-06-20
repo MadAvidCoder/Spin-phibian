@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qyo2l"]
 radius = 8.0
 
-[node name="Frog" type="CharacterBody2D" unique_id=1809645032]
+[node name="Frog" type="CharacterBody2D" unique_id=1809645032 groups=["frog"]]
 script = ExtResource("1_qyo2l")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1201950172]
