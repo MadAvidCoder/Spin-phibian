@@ -13,6 +13,7 @@ var state: States = States.AIR
 @export var orbit_radius: float = 80.0
 @export var pull_speed: float = 600.0
 @export var max_angular_speed: float = 12.0
+@export var max_grapple_distance: float = 200.0
 var angular_speed: float = 6.0
 var angle: float = 0.0
 
@@ -41,7 +42,8 @@ func change_state(new_state: States):
 
 func enter_grapple(pos: Vector2):
 	anchor_pos = pos
-	change_state(States.PULLING)
+	if global_position.distance_to(pos) <= max_grapple_distance:
+		change_state(States.PULLING)
 
 func enter_state():
 	match state:
