@@ -70,7 +70,8 @@ func process_state(delta: float):
 	match state:
 		States.AIR:
 			var input_direction = Input.get_axis("left", "right")
-			velocity.x = input_direction * SPEED
+			var target_x = input_direction * SPEED
+			velocity.x = move_toward(velocity.x, target_x, 2000 * delta)
 			velocity += gravity
 			if is_on_floor():
 				change_state(States.GROUND)
