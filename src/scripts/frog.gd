@@ -12,9 +12,8 @@ var state: States = States.AIR
 @export_category("Grappling")
 @export var orbit_radius: float = 80.0
 @export var pull_speed: float = 600.0
-@export var max_angular_speed: float = 12.0
-@export var max_grapple_distance: float = 200.0
-var angular_speed: float = 6.0
+@export var angular_speed: float = 12.0
+@export var max_grapple_distance: float = 500.0
 var angle: float = 0.0
 
 
@@ -54,8 +53,10 @@ func enter_state():
 			angle = offset.angle()
 			var tangent = Vector2(-offset.y, offset.x).normalized()
 			
-			angular_speed = velocity.dot(tangent) < orbit_radius
-			angular_speed = clamp(angular_speed, -max_angular_speed, max_angular_speed)
+			if velocity.dot(tangent) < 0:
+				angular_speed = -abs(angular_speed)
+			else:
+				angular_speed = abs(angular_speed)
 
 func exit_state():
 	match state:
