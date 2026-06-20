@@ -53,13 +53,13 @@ jobs:
       
       - name: Import Project
         run: |
-          "$GODOT_BIN" --headless --import
+          "$GODOT_BIN" --headless --path src --import
 
       - name: Export Web
         run: |
           mkdir -p build/web
 
-          "$GODOT_BIN" --headless --export-release "Web" build/web/index.html
+          "$GODOT_BIN" --headless --path src --export-release "Web" "$GITHUB_WORKSPACE/build/web/index.html"
       
       - name: Add coi-service-worker
         run: |
