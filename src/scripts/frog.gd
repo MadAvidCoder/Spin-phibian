@@ -6,14 +6,14 @@ var state: States = States.air
 @export_category("Platforming")
 @export var gravity: Vector2
 
-
-
-
+@onready var hook_anchor = $"../GrapplingHook/PlayerBody"
 
 func _physics_process(delta: float) -> void:
-	process_state()
+	self.global_position = hook_anchor.global_position
+	self.global_rotation = hook_anchor.global_rotation
+	#process_state()
 	
-	move_and_slide()
+	#move_and_slide()
 
 func change_state(new_state: States):
 	exit_state()

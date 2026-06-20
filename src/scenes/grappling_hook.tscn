@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://3amnrpey8rcm"]
+
+[ext_resource type="Script" uid="uid://dm0m42qpncryy" path="res://scripts/grappling_hook.gd" id="1_fdaym"]
+[ext_resource type="Script" uid="uid://cj72hugr8jab0" path="res://scenes/line.gd" id="1_psnef"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n83mn"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_05fc1"]
+radius = 1.0
+
+[node name="GrapplingHook" type="Node2D" unique_id=1457474110]
+script = ExtResource("1_fdaym")
+
+[node name="AnchorBody" type="StaticBody2D" parent="." unique_id=1197908326]
+collision_layer = 34
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnchorBody" unique_id=1700997139]
+shape = SubResource("CircleShape2D_n83mn")
+
+[node name="Polygon2D" type="Polygon2D" parent="AnchorBody" unique_id=479120937]
+polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
+
+[node name="PlayerBody" type="RigidBody2D" parent="." unique_id=1693184994]
+position = Vector2(-13, 25)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody" unique_id=1220312673]
+shape = SubResource("CircleShape2D_05fc1")
+
+[node name="Polygon2D" type="Polygon2D" parent="PlayerBody" unique_id=664934573]
+position = Vector2(11, -19)
+polygon = PackedVector2Array(-11, 18, -10, 19, -11, 20, -12, 19)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=699934310]
+node_a = NodePath("../AnchorBody")
+node_b = NodePath("../PlayerBody")
+
+[node name="Line" type="Line2D" parent="." unique_id=113373062]
+points = PackedVector2Array(40, 1, 40, 22)
+width = 1.0
+default_color = Color(1, 0.56078434, 1, 1)
+script = ExtResource("1_psnef")
