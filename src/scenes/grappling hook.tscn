@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://3amnrpey8rcm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n83mn"]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_05fc1"]
+radius = 1.0
+
+[node name="Node2D" type="Node2D" unique_id=1457474110]
+
+[node name="Area2D" type="StaticBody2D" parent="." unique_id=1197908326]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1700997139]
+shape = SubResource("CircleShape2D_n83mn")
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D" unique_id=479120937]
+polygon = PackedVector2Array(0, -2, 2, 0, 0, 2, -2, 0)
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=1693184994]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1220312673]
+position = Vector2(-11, 19)
+shape = SubResource("CircleShape2D_05fc1")
+
+[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D" unique_id=664934573]
+polygon = PackedVector2Array(-11, 18, -10, 19, -11, 20, -12, 19)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="." unique_id=699934310]
+node_a = NodePath("../Area2D")
+node_b = NodePath("../RigidBody2D")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=400828232]
+zoom = Vector2(6, 6)

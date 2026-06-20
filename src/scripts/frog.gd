@@ -8,8 +8,10 @@ var state: States = States.air
 
 
 
+
+
 func _physics_process(delta: float) -> void:
-	var input_direction = Input.get_axis("left", "right")
+	process_state()
 	
 	move_and_slide()
 
@@ -34,4 +36,4 @@ func process_state():
 				change_state(States.ground)
 		
 		States.ground:
-			pass
+			velocity.y = 0
