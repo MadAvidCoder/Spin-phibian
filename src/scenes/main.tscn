@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://b25a2beyym67k"]
 
+[ext_resource type="PackedScene" uid="uid://dgu8gco2updb7" path="res://scenes/frog.tscn" id="1_o5qli"]
+
 [node name="Node2D" type="Node2D" unique_id=1309191250]
 
-[node name="Label" type="Label" parent="." unique_id=1894777369]
-offset_left = 508.0
-offset_top = 281.0
-offset_right = 557.0
-offset_bottom = 304.0
-text = "TESTING"
+[node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
+position = Vector2(576, 324)
