@@ -1,9 +1,38 @@
 extends CharacterBody2D
 
-const SPEED: float = 300.0
+enum States {ground, air, grappled}
+var state: States = States.air
+
+@export_category("Platforming")
+@export var gravity: Vector2
+
+
 
 func _physics_process(delta: float) -> void:
-	var direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_direction = Input.get_axis("left", "right")
+	print(input_direction)
 	
-	velocity = direction * SPEED
 	move_and_slide()
+
+func change_state(new_state: States):
+	exit_state()
+	state = new_state
+	enter_state()
+
+func enter_state():
+	match state:
+		States.air:
+			pass
+
+func exit_state():
+	pass
+
+func process_state():
+	match state:
+		States.air:
+			velocity += gravity
+			if is_on_floor():
+				change_state(States.ground)
+		
+		States.ground:
+			pass
