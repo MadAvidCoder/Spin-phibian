@@ -1,6 +1,6 @@
-.godot/
-.import/
-.idea/
+src/.godot/
+src/.import/
+src/.idea/
 *.tmp
 .nomedia
 ~*.dll
