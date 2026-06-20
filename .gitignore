@@ -1,6 +1,8 @@
 src/.godot/
 src/.import/
 src/.idea/
+src/addons/
+src/.vscode/
 *.tmp
 .nomedia
 ~*.dll
