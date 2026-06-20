@@ -142,7 +142,7 @@ sources/0 = SubResource("TileSetAtlasSource_sugp2")
 [node name="Node2D" type="Node2D" unique_id=1309191250]
 
 [node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
-position = Vector2(576, 405)
+position = Vector2(368, 455)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=646166360]
 position = Vector2(576, 324)
