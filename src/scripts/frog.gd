@@ -25,6 +25,8 @@ var anchor_pos: Vector2
 const SPEED: float = 300.0
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("grapple"):
+		enter_grapple(get_global_mouse_position())
 	if Input.is_action_just_released("grapple") and (state == States.PULLING or state == States.ORBITING):
 		change_state(States.AIR)
 	
@@ -34,6 +36,7 @@ func _physics_process(delta: float) -> void:
 func on_anchor_clicked(anchor: Anchor):
 	if state == States.GROUND or state == States.AIR:
 		enter_grapple(anchor.position)
+		
 
 func change_state(new_state: States):
 	exit_state()

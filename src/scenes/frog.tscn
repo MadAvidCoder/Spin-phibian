@@ -29,3 +29,5 @@ sprite_frames = SubResource("SpriteFrames_2cus8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596790902]
 shape = SubResource("CircleShape2D_qyo2l")
+
+[node name="Tongue" type="Node2D" parent="." unique_id=1559968155]

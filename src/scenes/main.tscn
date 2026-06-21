@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgu8gco2updb7" path="res://scenes/frog.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://barq67eed08is" path="res://icon.svg" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://b143qyca7ba5" path="res://scenes/anchor.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://d0c8ckfwky8kp" path="res://scenes/cursor.tscn" id="4_jyhfs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("2_0wfyh")
@@ -150,4 +151,9 @@ tile_map_data = PackedByteArray("AADs/woAAAABAAEAAADt/woAAAABAAEAAADu/woAAAABAAE
 tile_set = SubResource("TileSet_o5qli")
 
 [node name="Anchor" parent="." unique_id=1354435780 instance=ExtResource("3_sugp2")]
-position = Vector2(664, 320)
+position = Vector2(541, 254)
+
+[node name="Cursor" parent="." unique_id=407595645 instance=ExtResource("4_jyhfs")]
+
+[node name="Anchor2" parent="." unique_id=1674688037 instance=ExtResource("3_sugp2")]
+position = Vector2(574, 258)

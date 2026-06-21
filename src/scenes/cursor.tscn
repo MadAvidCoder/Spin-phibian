@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d0c8ckfwky8kp"]
+
+[ext_resource type="Script" uid="uid://1vffvmkw4y1b" path="res://cursor.gd" id="1_fsq4c"]
+[ext_resource type="Texture2D" uid="uid://iu7wctjol0sa" path="res://assets/sprites/cursor.png" id="2_s0nli"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n83mn"]
+radius = 500.0
+
+[node name="Cursor" type="Area2D" unique_id=407595645]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_fsq4c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77655393]
+shape = SubResource("CircleShape2D_n83mn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1600564122]
+texture = ExtResource("2_s0nli")
