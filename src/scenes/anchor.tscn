@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b143qyca7ba5"]
 
 [ext_resource type="Script" uid="uid://dwkq7b7oj7v5" path="res://scripts/base_anchor.gd" id="1_gdjek"]
+[ext_resource type="Texture2D" uid="uid://bh71ieiwbq748" path="res://assets/sprites/basic anchor.png" id="2_hs5qy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cus8"]
 radius = 7.071068
@@ -12,8 +13,8 @@ input_pickable = true
 script = ExtResource("1_gdjek")
 metadata/_custom_type_script = "uid://dwkq7b7oj7v5"
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1288380937]
-polygon = PackedVector2Array(-7.5, 0, 0, -7.5, 7.5, 0, 0, 7.5)
-
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=871511499]
 shape = SubResource("CircleShape2D_2cus8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1586985149]
+texture = ExtResource("2_hs5qy")
