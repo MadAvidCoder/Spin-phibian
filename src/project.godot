@@ -47,6 +47,11 @@ grapple={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Walls"
+2d_physics/layer_2="Anchors"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
