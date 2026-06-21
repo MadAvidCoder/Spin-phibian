@@ -1,6 +1,8 @@
 extends StaticBody2D
 class_name Anchor
 
+@export var orbit_radius: float = 30.0
+
 var frog: CharacterBody2D
 var sprite : Sprite2D
 

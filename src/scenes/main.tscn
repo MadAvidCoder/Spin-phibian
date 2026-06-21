@@ -143,6 +143,7 @@ sources/0 = SubResource("TileSetAtlasSource_sugp2")
 [node name="Node2D" type="Node2D" unique_id=1309191250]
 
 [node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
+unique_name_in_owner = true
 position = Vector2(368, 455)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=646166360]
@@ -151,9 +152,12 @@ tile_map_data = PackedByteArray("AADs/woAAAABAAEAAADt/woAAAABAAEAAADu/woAAAABAAE
 tile_set = SubResource("TileSet_o5qli")
 
 [node name="Anchor" parent="." unique_id=1354435780 instance=ExtResource("3_sugp2")]
-position = Vector2(541, 254)
+position = Vector2(395, 444)
 
 [node name="Cursor" parent="." unique_id=407595645 instance=ExtResource("4_jyhfs")]
 
 [node name="Anchor2" parent="." unique_id=1674688037 instance=ExtResource("3_sugp2")]
-position = Vector2(574, 258)
+position = Vector2(612, 359)
+
+[node name="Anchor3" parent="." unique_id=742233398 instance=ExtResource("3_sugp2")]
+position = Vector2(797, 324)
