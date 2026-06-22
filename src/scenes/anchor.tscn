@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" uid="uid://dwkq7b7oj7v5" path="res://scripts/base_anchor.gd" id="1_gdjek"]
 [ext_resource type="Texture2D" uid="uid://bh71ieiwbq748" path="res://assets/sprites/basic anchor.png" id="2_hs5qy"]
+[ext_resource type="Shader" uid="uid://dk82u8abh3jtm" path="res://shaders/anchor_outline.gdshader" id="2_lm60w"]
 [ext_resource type="Script" uid="uid://c6aktqa8tmglg" path="res://scripts/orbit_radius.gd" id="3_ua340"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cus8"]
 radius = 7.071068
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ua340"]
+shader = ExtResource("2_lm60w")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_thickness = 1.0
 
 [node name="Anchor" type="StaticBody2D" unique_id=1354435780]
 collision_layer = 2
@@ -18,6 +24,7 @@ metadata/_custom_type_script = "uid://dwkq7b7oj7v5"
 shape = SubResource("CircleShape2D_2cus8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1586985149]
+material = SubResource("ShaderMaterial_ua340")
 texture = ExtResource("2_hs5qy")
 
 [node name="OrbitRadius" type="Node2D" parent="." unique_id=308353344]

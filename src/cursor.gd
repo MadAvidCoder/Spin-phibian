@@ -1,6 +1,8 @@
 extends Area2D
 
+
 @onready var frog: CharacterBody2D = get_tree().get_first_node_in_group("frog")
+var closest_overlapping_anchor : Anchor
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
@@ -9,7 +11,7 @@ func _process(delta: float) -> void:
 	global_position = get_global_mouse_position()
 	
 	if Input.is_action_just_pressed("grapple"):
-		var closest_overlapping_anchor: Anchor = null
+		closest_overlapping_anchor = null
 		var min_distance = 10000
 		for body in get_overlapping_bodies():
 			if body is Anchor:
