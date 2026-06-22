@@ -10,8 +10,8 @@ radius = 7.071068
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ua340"]
 shader = ExtResource("2_lm60w")
-shader_parameter/outline_color = Color(0, 0, 0, 1)
-shader_parameter/outline_thickness = 1.0
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 1.0000000475
 
 [node name="Anchor" type="StaticBody2D" unique_id=1354435780]
 collision_layer = 2

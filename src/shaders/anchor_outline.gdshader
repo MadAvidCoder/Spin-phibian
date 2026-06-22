@@ -1,7 +1,7 @@
 shader_type canvas_item;
 render_mode unshaded;
 
-uniform vec4 outline_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
+uniform vec4 outline_color : source_color = vec4(1.0, 1.0, 1.0, 0.5);
 uniform float outline_thickness : hint_range(0.0, 10.0) = 1.0;
 
 void fragment() {

@@ -6,6 +6,7 @@ class_name Anchor
 var cursor
 var frog: CharacterBody2D
 var sprite : Sprite2D
+var mat : ShaderMaterial
 
 func _ready() -> void:
 	cursor = get_tree().get_first_node_in_group("cursor")
@@ -14,10 +15,14 @@ func _ready() -> void:
 		if child is Sprite2D:
 			sprite = child
 			break
+	sprite.material = sprite.material.duplicate()
+	mat = sprite.material
 
-func process():
-	if cursor.closest_overlapping_anchor == self:
-		pass
+func _process(delta):
+	if cursor.closest_overlapping_anchor == self and frog.state != frog.States.GRAPPLED:
+		mat.set_shader_parameter("outline_color", Color(1, 1, 1, 1))
+	else:
+		mat.set_shader_parameter("outline_color", Color(0, 0, 0, 0))
 
 func on_grabbed():
 	pass

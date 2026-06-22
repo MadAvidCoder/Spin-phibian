@@ -5,30 +5,69 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rq8tc"]
 atlas = ExtResource("2_qyo2l")
-region = Rect2(0, 0, 16, 16)
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g2vb"]
+atlas = ExtResource("2_qyo2l")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybftx"]
+atlas = ExtResource("2_qyo2l")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ifle"]
+atlas = ExtResource("2_qyo2l")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu7fg"]
+atlas = ExtResource("2_qyo2l")
+region = Rect2(48, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2cus8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rq8tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g2vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybftx")
+}],
+"loop": 0,
+"name": &"ground shoot tongue",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ifle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu7fg")
 }],
 "loop": 1,
-"name": &"default",
-"speed": 5.0
+"name": &"idle",
+"speed": 1.5
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qyo2l"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n83mn"]
+size = Vector2(14, 9)
 
 [node name="Frog" type="CharacterBody2D" unique_id=1809645032 groups=["frog"]]
 script = ExtResource("1_qyo2l")
-pull_speed = 900.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1201950172]
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_2cus8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596790902]
-shape = SubResource("CircleShape2D_qyo2l")
+animation = &"idle"
+frame_progress = 0.25433636
 
 [node name="Tongue" type="Node2D" parent="." unique_id=1559968155]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216859066]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_n83mn")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1195909772]
+zoom = Vector2(4, 4)

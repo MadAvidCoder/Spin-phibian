@@ -10,16 +10,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global_position = get_global_mouse_position()
 	
+	closest_overlapping_anchor = null
+	var min_distance = 10000
+	for body in get_overlapping_bodies():
+		if body is Anchor:
+			var dist_squared = position.distance_squared_to(body.position)
+			if dist_squared < min_distance:
+				min_distance = dist_squared
+				closest_overlapping_anchor = body
+				
 	if Input.is_action_just_pressed("grapple"):
-		closest_overlapping_anchor = null
-		var min_distance = 10000
-		for body in get_overlapping_bodies():
-			if body is Anchor:
-				var dist_squared = position.distance_squared_to(body.position)
-				if dist_squared < min_distance:
-					min_distance = dist_squared
-					closest_overlapping_anchor = body
-		
 		if closest_overlapping_anchor:
 			frog.on_anchor_clicked(closest_overlapping_anchor)
 	
