@@ -48,7 +48,13 @@ func change_state(new_state: States):
 func enter_state():
 	match state:
 		States.AIR:
-			pass
+			sprite.play("air")
+		
+		States.GROUND:
+			sprite.play("idle")
+		
+		States.GRAPPLED:
+			sprite.play("grapple")
 
 func exit_state():
 	match state:
@@ -61,7 +67,7 @@ func exit_state():
 			tween.tween_property(sprite, "rotation", 0.0, 0.4)
 
 func process_state(delta: float):
-	queue_redraw()
+
 	match state:
 		States.AIR:
 			velocity += gravity * delta
@@ -93,12 +99,3 @@ func process_state(delta: float):
 			
 			velocity = (radial_vel + tang_vel)
 			sprite.rotation = sprite.global_position.direction_to(anchor.global_position).angle() + deg_to_rad(180)
-
-func _draw() -> void:
-	if state == States.GRAPPLED:
-		draw_line(
-			Vector2.ZERO,
-			to_local(anchor.global_position),
-			Color("fa6e79"),
-			2.0
-		)

@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cs576fx8fbemy" path="res://scripts/frog.gd" id="1_qyo2l"]
 [ext_resource type="Texture2D" uid="uid://csgvv7t3jfw6h" path="res://assets/sprites/frog-Sheet.png" id="2_qyo2l"]
+[ext_resource type="Script" uid="uid://i7irbawwhr3w" path="res://scenes/tongue.gd" id="3_rq8tc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyo2l"]
+atlas = ExtResource("2_qyo2l")
+region = Rect2(0, 144, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rq8tc"]
 atlas = ExtResource("2_qyo2l")
@@ -27,6 +32,14 @@ region = Rect2(48, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qyo2l")
+}],
+"loop": 1,
+"name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rq8tc")
 }, {
 "duration": 1.0,
@@ -36,7 +49,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ybftx")
 }],
 "loop": 0,
-"name": &"ground shoot tongue",
+"name": &"grapple",
 "speed": 10.0
 }, {
 "frames": [{
@@ -60,19 +73,18 @@ angular_speed = 500.0
 gravity = Vector2(0, 900)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1201950172]
-position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_2cus8")
-animation = &"idle"
-frame_progress = 0.25433636
+animation = &"grapple"
+frame = 2
+frame_progress = 1.0
 
 [node name="Tongue" type="Node2D" parent="." unique_id=1559968155]
-position = Vector2(0, 4)
+script = ExtResource("3_rq8tc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216859066]
-position = Vector2(0, -0.5)
+position = Vector2(3, 2)
 shape = SubResource("RectangleShape2D_n83mn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1195909772]
-position = Vector2(0, 4)
 zoom = Vector2(4, 4)
 position_smoothing_speed = 8.0
