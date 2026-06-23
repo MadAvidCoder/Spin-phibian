@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum States {
 	GROUND,
 	AIR,
+	TONGUING,
 	GRAPPLED,
 }
 
@@ -34,7 +35,7 @@ func on_anchor_clicked(targ_anchor: Anchor):
 	if state == States.GROUND or state == States.AIR:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
-			sprite.play("grapple")
+			change_state(States.TONGUING)
 			tongue.extend(func(): change_state(States.GRAPPLED))
 
 			var dir = (anchor.global_position - global_position).normalized()
@@ -57,7 +58,8 @@ func enter_state():
 	match state:
 		States.AIR:
 			sprite.play("air")
-		
+		States.TONGUING:
+			sprite.play("grapple")
 		States.GROUND:
 			sprite.play("idle")
 
@@ -70,7 +72,7 @@ func exit_state():
 			tween.set_ease(Tween.EASE_OUT)
 			tween.set_trans(Tween.TRANS_BACK)
 			tween.tween_property(sprite, "rotation", 0.0, 0.4)
-			tongue.retract(func(): sprite.play_backwards("grapple"))
+			tongue.retract()
 
 func process_state(delta: float):
 	match state:

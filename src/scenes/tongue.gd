@@ -17,11 +17,10 @@ func extend(x):
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_callback(x)
 
-func retract(x):
+func retract():
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "tongue_progress", 0.0, tongue_retract_time)
-	tween.tween_callback(x)
 
 func _draw() -> void:
 	if tongue_progress != 0.0:
