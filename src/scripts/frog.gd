@@ -37,6 +37,13 @@ func on_anchor_clicked(targ_anchor: Anchor):
 			sprite.play("grapple")
 			tongue.extend(func(): change_state(States.GRAPPLED))
 
+			var dir = (anchor.global_position - global_position).normalized()
+			var forward = Vector2.UP.rotated(global_rotation)
+
+			var turn = sign(forward.cross(dir))
+
+			angular_speed = turn * abs(angular_speed)
+
 func on_anchor_released():
 	if state == States.GRAPPLED:
 		change_state(States.AIR)
@@ -95,4 +102,6 @@ func process_state(delta: float):
 			var tang_vel = Vector2(-dir.y, dir.x) * -angular_speed
 			
 			velocity = (radial_vel + tang_vel)
+			
+			sprite.flip_h = false
 			sprite.rotation = sprite.global_position.direction_to(anchor.global_position).angle() + deg_to_rad(180)
