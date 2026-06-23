@@ -54,6 +54,11 @@ func exit_state():
 	match state:
 		States.AIR:
 			pass
+		States.GRAPPLED:
+			var tween = create_tween()
+			tween.set_ease(Tween.EASE_OUT)
+			tween.set_trans(Tween.TRANS_BACK)
+			tween.tween_property(sprite, "rotation", 0.0, 0.4)
 
 func process_state(delta: float):
 	queue_redraw()
@@ -62,6 +67,7 @@ func process_state(delta: float):
 			velocity += gravity * delta
 			if is_on_floor():
 				change_state(States.GROUND)
+			
 		
 		States.GROUND:
 			var input_direction = Input.get_axis("left", "right")
@@ -75,22 +81,18 @@ func process_state(delta: float):
 				change_state(States.AIR)
 		
 		States.GRAPPLED:
-			
-			
-			
 			var offset = anchor.global_position - global_position
 			var dir = offset.normalized()
 			
 			var dist = offset.length()
 			var radial_vel = Vector2.ZERO
 			if abs(dist - anchor.orbit_radius) > radial_tolerance:
-			
 				radial_vel = (offset / sign(dist - anchor.orbit_radius))
 			
 			var tang_vel = Vector2(-dir.y, dir.x) * -angular_speed
 			
 			velocity = (radial_vel + tang_vel)
-			sprite.rotation = global_position.direction_to(anchor.global_position).angle()
+			sprite.rotation = sprite.global_position.direction_to(anchor.global_position).angle() + deg_to_rad(180)
 
 func _draw() -> void:
 	if state == States.GRAPPLED:

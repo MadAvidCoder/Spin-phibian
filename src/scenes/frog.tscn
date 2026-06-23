@@ -60,17 +60,19 @@ angular_speed = 500.0
 gravity = Vector2(0, 900)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1201950172]
-position = Vector2(0, -8)
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_2cus8")
 animation = &"idle"
 frame_progress = 0.25433636
 
 [node name="Tongue" type="Node2D" parent="." unique_id=1559968155]
+position = Vector2(0, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216859066]
-position = Vector2(0, -4.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_n83mn")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1195909772]
+position = Vector2(0, 4)
 zoom = Vector2(4, 4)
 position_smoothing_speed = 8.0
