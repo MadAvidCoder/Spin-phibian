@@ -56,6 +56,8 @@ size = Vector2(14, 9)
 
 [node name="Frog" type="CharacterBody2D" unique_id=1809645032 groups=["frog"]]
 script = ExtResource("1_qyo2l")
+angular_speed = 500.0
+gravity = Vector2(0, 900)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1201950172]
 position = Vector2(0, -8)

@@ -34,7 +34,6 @@ func on_anchor_clicked(targ_anchor: Anchor):
 	if state == States.GROUND or state == States.AIR:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
-			print(anchor.global_position)
 			change_state(States.GRAPPLED)
 
 func on_anchor_released():
@@ -57,9 +56,10 @@ func exit_state():
 			pass
 
 func process_state(delta: float):
+	queue_redraw()
 	match state:
 		States.AIR:
-			velocity += gravity
+			velocity += gravity * delta
 			if is_on_floor():
 				change_state(States.GROUND)
 		
@@ -75,15 +75,28 @@ func process_state(delta: float):
 				change_state(States.AIR)
 		
 		States.GRAPPLED:
+			
+			
+			
 			var offset = anchor.global_position - global_position
 			var dir = offset.normalized()
 			
 			var dist = offset.length()
 			var radial_vel = Vector2.ZERO
 			if abs(dist - anchor.orbit_radius) > radial_tolerance:
-				print(dist)
+			
 				radial_vel = (offset / sign(dist - anchor.orbit_radius))
 			
 			var tang_vel = Vector2(-dir.y, dir.x) * -angular_speed
 			
 			velocity = (radial_vel + tang_vel)
+			sprite.rotation = global_position.direction_to(anchor.global_position).angle()
+
+func _draw() -> void:
+	if state == States.GRAPPLED:
+		draw_line(
+			Vector2.ZERO,
+			to_local(anchor.global_position),
+			Color("fa6e79"),
+			2.0
+		)
