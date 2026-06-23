@@ -20,7 +20,10 @@ func _ready() -> void:
 
 func _process(delta):
 	if cursor.closest_overlapping_anchor == self and frog.state != frog.States.GRAPPLED:
-		mat.set_shader_parameter("outline_color", Color(1, 1, 1, 1))
+		if position.distance_to(frog.position) <= frog.pull_dist:
+			mat.set_shader_parameter("outline_color", Color(1, 1, 1, 1))
+		else:
+			mat.set_shader_parameter("outline_color", Color(0.8, 0.8, 0.8, 0.5))
 	else:
 		mat.set_shader_parameter("outline_color", Color(0, 0, 0, 0))
 

@@ -11,9 +11,10 @@ var state: States = States.AIR
 @export_category("Grappling")
 @export var pull_strength: float = 600.0
 @export var max_pull_speed: float = 450.0
-@export var angular_speed: float = 12.0
-@export var pull_dist: float = 200.0
-
+@export var angular_speed: float = 200
+@export var pull_dist: float = 300.0
+@export var radial_speed: float = 50
+@export var radial_tolerance: float = 5
 var angle: float = 0.0
 
 
@@ -22,7 +23,7 @@ var anchor: Anchor
 @export_category("Platforming")
 @export var gravity: Vector2 = Vector2(0, 50)
 
-const SPEED: float = 300.0
+const SPEED: float = 200
 @onready var sprite: AnimatedSprite2D = $Sprite
 
 func _physics_process(delta: float) -> void:
@@ -31,7 +32,7 @@ func _physics_process(delta: float) -> void:
 
 func on_anchor_clicked(targ_anchor: Anchor):
 	if state == States.GROUND or state == States.AIR:
-		if targ_anchor.global_position.distance_to(global_position) <= targ_anchor.orbit_radius + pull_dist:
+		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
 			print(anchor.global_position)
 			change_state(States.GRAPPLED)
@@ -58,17 +59,31 @@ func exit_state():
 func process_state(delta: float):
 	match state:
 		States.AIR:
-			var input_direction = Input.get_axis("left", "right")
 			velocity += gravity
 			if is_on_floor():
 				change_state(States.GROUND)
 		
 		States.GROUND:
 			var input_direction = Input.get_axis("left", "right")
+			if input_direction == 1:
+				sprite.flip_h = true
+			elif input_direction == -1:
+				sprite.flip_h = false
 			velocity.x = input_direction * SPEED
 			
 			if not is_on_floor():
 				change_state(States.AIR)
 		
 		States.GRAPPLED:
-			pass
+			var offset = anchor.global_position - global_position
+			var dir = offset.normalized()
+			
+			var dist = offset.length()
+			var radial_vel = Vector2.ZERO
+			if abs(dist - anchor.orbit_radius) > radial_tolerance:
+				print(dist)
+				radial_vel = (offset / sign(dist - anchor.orbit_radius))
+			
+			var tang_vel = Vector2(-dir.y, dir.x) * -angular_speed
+			
+			velocity = (radial_vel + tang_vel)

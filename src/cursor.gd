@@ -8,7 +8,7 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _process(delta: float) -> void:
-	global_position = get_global_mouse_position()
+	global_position = lerp(global_position, get_global_mouse_position(), 1)
 	
 	closest_overlapping_anchor = null
 	var min_distance = 10000
