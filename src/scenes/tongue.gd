@@ -2,20 +2,32 @@ extends Node2D
 
 @onready var frog: CharacterBody2D = $".."
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@export var tongue_extend_time: float = 0.18
+@export var tongue_retract_time: float = 0.1
 
+var tongue_progress: float = 0.0 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	queue_redraw()
 
+func extend(x):
+	tongue_progress = 0.0
+	var tween = create_tween()
+	tween.tween_property(self, "tongue_progress", 1.0, 0.2)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_callback(x)
+
+func retract(x):
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(self, "tongue_progress", 0.0, tongue_retract_time)
+	tween.tween_callback(x)
+
 func _draw() -> void:
-	if frog.state == frog.States.GRAPPLED:
+	if tongue_progress != 0.0:
 		draw_line(
 			Vector2.ZERO,
-			to_local(frog.anchor.global_position),
+			to_local(frog.anchor.global_position) * tongue_progress,
 			Color("fa6e79"),
-			1.0
+			2.0
 		)

@@ -17,7 +17,6 @@ var state: States = States.AIR
 @export var radial_tolerance: float = 5
 var angle: float = 0.0
 
-
 var anchor: Anchor
 
 @export_category("Platforming")
@@ -25,6 +24,7 @@ var anchor: Anchor
 
 const SPEED: float = 200
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var tongue: Node2D = $Tongue
 
 func _physics_process(delta: float) -> void:
 	process_state(delta)
@@ -34,7 +34,8 @@ func on_anchor_clicked(targ_anchor: Anchor):
 	if state == States.GROUND or state == States.AIR:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
-			change_state(States.GRAPPLED)
+			sprite.play("grapple")
+			tongue.extend(func(): change_state(States.GRAPPLED))
 
 func on_anchor_released():
 	if state == States.GRAPPLED:
@@ -52,9 +53,6 @@ func enter_state():
 		
 		States.GROUND:
 			sprite.play("idle")
-		
-		States.GRAPPLED:
-			sprite.play("grapple")
 
 func exit_state():
 	match state:
@@ -65,15 +63,14 @@ func exit_state():
 			tween.set_ease(Tween.EASE_OUT)
 			tween.set_trans(Tween.TRANS_BACK)
 			tween.tween_property(sprite, "rotation", 0.0, 0.4)
+			tongue.retract(func(): sprite.play_backwards("grapple"))
 
 func process_state(delta: float):
-
 	match state:
 		States.AIR:
 			velocity += gravity * delta
 			if is_on_floor():
 				change_state(States.GROUND)
-			
 		
 		States.GROUND:
 			var input_direction = Input.get_axis("left", "right")
