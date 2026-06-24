@@ -28,7 +28,13 @@ const SPEED: float = 200
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var tongue: Node2D = $Tongue
 @onready var fader: CanvasLayer = $"../Fader"
-@onready var checkpoint: Node2D
+@onready var checkpoint: Checkpoint = $"../StartCheckpoint"
+
+func _ready() -> void:
+	global_position = checkpoint.marker.global_position
+
+func set_checkpoint(point: Checkpoint):
+	checkpoint = point
 
 func _physics_process(delta: float) -> void:
 	process_state(delta)
@@ -37,7 +43,7 @@ func _physics_process(delta: float) -> void:
 func respawn():
 	change_state(States.DEAD)
 	await fader.fade_out()
-	global_position = checkpoint.global_position
+	global_position = checkpoint.marker.global_position
 	await fader.hold()
 	await fader.fade_in()
 	change_state(States.AIR)

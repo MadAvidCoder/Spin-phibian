@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b143qyca7ba5" path="res://scenes/anchor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://d0c8ckfwky8kp" path="res://scenes/cursor.tscn" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://b6enfej1g1pcw" path="res://scripts/fader.gd" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dm0gln7oqt738" path="res://scenes/checkpoint.tscn" id="6_tefeu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("2_0wfyh")
@@ -138,30 +139,10 @@ texture = ExtResource("2_0wfyh")
 7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_o5qli"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
 sources/0 = SubResource("TileSetAtlasSource_sugp2")
 
 [node name="Node2D" type="Node2D" unique_id=1309191250]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=646166360]
-position = Vector2(576, 324)
-tile_map_data = PackedByteArray("AADs/woAAAABAAEAAADt/woAAAABAAEAAADu/woAAAABAAEAAADv/woAAAABAAEAAADw/woAAAABAAEAAADx/woAAAABAAEAAADy/woAAAABAAEAAADz/woAAAABAAEAAAD0/woAAAABAAEAAAD1/woAAAABAAEAAAD2/woAAAABAAEAAAD3/woAAAABAAEAAAD4/woAAAABAAEAAAD5/woAAAABAAEAAAD6/woAAAABAAEAAAD7/woAAAABAAEAAAD8/woAAAABAAEAAAD9/woAAAABAAEAAAD+/woAAAABAAEAAAD//woAAAABAAEAAAAAAAoAAAABAAEAAAABAAoAAAABAAEAAAACAAoAAAABAAEAAAADAAoAAAABAAEAAAAEAAoAAAABAAEAAAAFAAoAAAABAAEAAAAGAAoAAAABAAEAAAAHAAoAAAABAAEAAAAIAAoAAAABAAEAAAAJAAoAAAABAAEAAAAKAAoAAAABAAEAAAALAAoAAAABAAEAAAAMAAoAAAABAAEAAAANAAoAAAABAAEAAAAOAAoAAAABAAEAAAAPAAoAAAABAAEAAAAQAAoAAAABAAEAAAARAAoAAAABAAEAAAASAAoAAAABAAEAAAATAAoAAAABAAEAAAAUAAoAAAABAAEAAAAVAAoAAAABAAEAAAAWAAoAAAABAAEAAAAXAAoAAAABAAEAAAAAAPH/AAABAAEAAAABAPH/AAABAAEAAAABAPL/AAABAAEAAAAAAPL/AAABAAEAAAD///H/AAABAAEAAAD///L/AAABAAEAAAD///P/AAABAAEAAAAAAPP/AAABAAEAAAABAPP/AAABAAEAAAASAPH/AAABAAEAAAASAPL/AAABAAEAAAASAPP/AAABAAEAAAATAPP/AAABAAEAAAAUAPP/AAABAAEAAAAUAPL/AAABAAEAAAATAPH/AAABAAEAAAAUAPH/AAABAAEAAAATAPL/AAABAAEAAAA=")
-tile_set = SubResource("TileSet_o5qli")
-
-[node name="Anchor" parent="." unique_id=1354435780 instance=ExtResource("3_sugp2")]
-position = Vector2(395, 444)
-
-[node name="Cursor" parent="." unique_id=407595645 instance=ExtResource("4_jyhfs")]
-
-[node name="Anchor2" parent="." unique_id=1674688037 instance=ExtResource("3_sugp2")]
-position = Vector2(612, 359)
-
-[node name="Anchor3" parent="." unique_id=742233398 instance=ExtResource("3_sugp2")]
-position = Vector2(797, 324)
-
-[node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
-unique_name_in_owner = true
-position = Vector2(368, 455)
 
 [node name="Fader" type="CanvasLayer" parent="." unique_id=1235757295]
 script = ExtResource("5_tbgi4")
@@ -175,3 +156,29 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=646166360]
+position = Vector2(576, 324)
+tile_map_data = PackedByteArray("AADs/woAAAABAAEAAADt/woAAAABAAEAAADu/woAAAABAAEAAADv/woAAAABAAEAAADw/woAAAABAAEAAADx/woAAAABAAEAAADy/woAAAABAAEAAADz/woAAAABAAEAAAD0/woAAAABAAEAAAD1/woAAAABAAEAAAD2/woAAAABAAEAAAD3/woAAAABAAEAAAD4/woAAAABAAEAAAD5/woAAAABAAEAAAD6/woAAAABAAEAAAD7/woAAAABAAEAAAD8/woAAAABAAEAAAD9/woAAAABAAEAAAD+/woAAAABAAEAAAD//woAAAABAAEAAAAAAAoAAAABAAEAAAABAAoAAAABAAEAAAACAAoAAAABAAEAAAADAAoAAAABAAEAAAAEAAoAAAABAAEAAAAFAAoAAAABAAEAAAAGAAoAAAABAAEAAAAHAAoAAAABAAEAAAAIAAoAAAABAAEAAAAJAAoAAAABAAEAAAAKAAoAAAABAAEAAAALAAoAAAABAAEAAAAMAAoAAAABAAEAAAANAAoAAAABAAEAAAAOAAoAAAABAAEAAAAPAAoAAAABAAEAAAAQAAoAAAABAAEAAAARAAoAAAABAAEAAAASAAoAAAABAAEAAAATAAoAAAABAAEAAAAUAAoAAAABAAEAAAAVAAoAAAABAAEAAAAWAAoAAAABAAEAAAAXAAoAAAABAAEAAAAAAPH/AAABAAEAAAABAPH/AAABAAEAAAABAPL/AAABAAEAAAAAAPL/AAABAAEAAAD///H/AAABAAEAAAD///L/AAABAAEAAAD///P/AAABAAEAAAAAAPP/AAABAAEAAAABAPP/AAABAAEAAAASAPH/AAABAAEAAAASAPL/AAABAAEAAAASAPP/AAABAAEAAAATAPP/AAABAAEAAAAUAPP/AAABAAEAAAAUAPL/AAABAAEAAAATAPH/AAABAAEAAAAUAPH/AAABAAEAAAATAPL/AAABAAEAAAA=")
+tile_set = SubResource("TileSet_o5qli")
+
+[node name="Cursor" parent="." unique_id=407595645 instance=ExtResource("4_jyhfs")]
+
+[node name="Anchor" parent="." unique_id=1354435780 instance=ExtResource("3_sugp2")]
+position = Vector2(395, 444)
+
+[node name="Anchor2" parent="." unique_id=1674688037 instance=ExtResource("3_sugp2")]
+position = Vector2(612, 359)
+
+[node name="Anchor3" parent="." unique_id=742233398 instance=ExtResource("3_sugp2")]
+position = Vector2(797, 324)
+
+[node name="StartCheckpoint" parent="." unique_id=1000476754 instance=ExtResource("6_tefeu")]
+position = Vector2(280, 457)
+
+[node name="Checkpoint" parent="." unique_id=1289367084 instance=ExtResource("6_tefeu")]
+position = Vector2(476, 461)
+
+[node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
+unique_name_in_owner = true
+position = Vector2(368, 455)
