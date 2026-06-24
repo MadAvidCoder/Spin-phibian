@@ -38,6 +38,7 @@ func respawn():
 	change_state(States.DEAD)
 	await fader.fade_out()
 	global_position = checkpoint.global_position
+	await fader.hold()
 	await fader.fade_in()
 	change_state(States.AIR)
 
