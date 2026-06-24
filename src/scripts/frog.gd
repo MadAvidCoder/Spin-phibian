@@ -46,6 +46,14 @@ func on_anchor_clicked(targ_anchor: Anchor):
 					angular_speed = -abs(angular_speed)
 				else:
 					angular_speed = abs(angular_speed)
+			elif dir.x < 0 and dir.y < 0:
+				if rad_to_deg(vel.angle()) > rad_to_deg(ang) and rad_to_deg(vel.angle()) < rad_to_deg(ang) + 180:
+					angular_speed = -abs(angular_speed)
+					print("x")
+				else:
+					angular_speed = abs(angular_speed)
+					print("Y")
+				
 
 func on_anchor_released():
 	if state == States.GRAPPLED:
