@@ -36,7 +36,9 @@ func on_anchor_clicked(targ_anchor: Anchor):
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
 			change_state(States.TONGUING)
-			tongue.extend(func(): change_state(States.GRAPPLED))
+			tongue.extend(func():
+				if state == States.TONGUING: change_state(States.GRAPPLED)
+				else: tongue.retract())
 
 			var dir = (anchor.global_position - global_position)
 			var cross = dir.cross(velocity)
@@ -46,7 +48,7 @@ func on_anchor_clicked(targ_anchor: Anchor):
 				angular_speed = abs(angular_speed)
 
 func on_anchor_released():
-	if state == States.GRAPPLED:
+	if state == States.GRAPPLED or state == States.TONGUING:
 		change_state(States.AIR)
 
 func change_state(new_state: States):
