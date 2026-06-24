@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://barq67eed08is" path="res://icon.svg" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://b143qyca7ba5" path="res://scenes/anchor.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://d0c8ckfwky8kp" path="res://scenes/cursor.tscn" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://b6enfej1g1pcw" path="res://scripts/fader.gd" id="5_tbgi4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("2_0wfyh")
@@ -161,3 +162,16 @@ position = Vector2(797, 324)
 [node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
 unique_name_in_owner = true
 position = Vector2(368, 455)
+
+[node name="Fader" type="CanvasLayer" parent="." unique_id=1235757295]
+script = ExtResource("5_tbgi4")
+
+[node name="ColorRect" type="ColorRect" parent="Fader" unique_id=840389884]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true

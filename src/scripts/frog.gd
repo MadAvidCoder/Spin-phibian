@@ -5,6 +5,7 @@ enum States {
 	AIR,
 	TONGUING,
 	GRAPPLED,
+	DEAD,
 }
 
 var state: States = States.AIR
@@ -26,10 +27,19 @@ var anchor: Anchor
 const SPEED: float = 200
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var tongue: Node2D = $Tongue
+@onready var fader: CanvasLayer = $"../Fader"
+@onready var checkpoint: Node2D
 
 func _physics_process(delta: float) -> void:
 	process_state(delta)
 	move_and_slide()
+
+func respawn():
+	change_state(States.DEAD)
+	await fader.fade_out()
+	global_position = checkpoint.global_position
+	await fader.fade_in()
+	change_state(States.AIR)
 
 func on_anchor_clicked(targ_anchor: Anchor):
 	if state == States.GROUND or state == States.AIR:
@@ -64,6 +74,8 @@ func enter_state():
 			sprite.play("grapple")
 		States.GROUND:
 			sprite.play("idle")
+		States.DEAD:
+			velocity = Vector2.ZERO
 
 func exit_state():
 	match state:
