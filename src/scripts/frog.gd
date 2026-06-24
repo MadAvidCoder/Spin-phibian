@@ -38,25 +38,12 @@ func on_anchor_clicked(targ_anchor: Anchor):
 			change_state(States.TONGUING)
 			tongue.extend(func(): change_state(States.GRAPPLED))
 
-			var dir = (anchor.global_position - global_position).normalized()
-			var ang = dir.angle()
-			var vel = velocity.normalized()
-			if dir.x > 0 and dir.y < 0:
-				if rad_to_deg(vel.angle()) > rad_to_deg(ang) and rad_to_deg(vel.angle()) < rad_to_deg(ang) + 180:
-					angular_speed = -abs(angular_speed)
-				else:
-					angular_speed = abs(angular_speed)
-			elif dir.x < 0 and dir.y < 0:
-				if rad_to_deg(vel.angle()) > rad_to_deg(ang) and rad_to_deg(vel.angle()) < rad_to_deg(ang) + 180:
-					angular_speed = -abs(angular_speed)
-				else:
-					angular_speed = abs(angular_speed)
-			elif dir.x > 0 and dir.y > 0:
-				if rad_to_deg(vel.angle()) > rad_to_deg(ang) and rad_to_deg(vel.angle()) < rad_to_deg(ang) + 180:
-					angular_speed = -abs(angular_speed)
-				else:
-					angular_speed = abs(angular_speed)
-			
+			var dir = (anchor.global_position - global_position)
+			var cross = dir.cross(velocity)
+			if cross > 0:
+				angular_speed = -abs(angular_speed)
+			else:
+				angular_speed = abs(angular_speed)
 
 func on_anchor_released():
 	if state == States.GRAPPLED:
