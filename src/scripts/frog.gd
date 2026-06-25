@@ -8,6 +8,8 @@ enum States {
 	DEAD,
 }
 
+signal respawned
+
 var state: States = States.AIR
 
 @export_category("Grappling")
@@ -48,6 +50,7 @@ func respawn():
 	change_state(States.DEAD)
 	await fader.fade_out()
 	global_position = checkpoint.marker.global_position
+	respawned.emit()
 	await fader.hold()
 	await fader.fade_in()
 	change_state(States.AIR)

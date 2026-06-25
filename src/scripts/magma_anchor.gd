@@ -5,6 +5,10 @@ class_name MagmaAnchor
 
 @onready var timer = $Timer
 
+func _ready():
+	super._ready()
+	frog.respawned.connect(_on_frog_respawned)
+
 func on_grabbed():
 	super.on_grabbed()
 	sprite.play("heating")
@@ -21,3 +25,7 @@ func _on_animation_finished():
 
 func _on_timer_timeout():
 	sprite.play("idle")
+
+func _on_frog_respawned():
+	sprite.play("idle")
+	timer.stop()
