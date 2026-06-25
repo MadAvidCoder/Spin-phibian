@@ -56,6 +56,8 @@ func on_anchor_clicked(targ_anchor: Anchor):
 	if state == States.GROUND or state == States.AIR:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
+			anchor.on_grabbed()
+			
 			change_state(States.TONGUING)
 			tongue.extend(func():
 				if state == States.TONGUING: change_state(States.GRAPPLED)
@@ -70,6 +72,7 @@ func on_anchor_clicked(targ_anchor: Anchor):
 
 func on_anchor_released():
 	if state == States.GRAPPLED or state == States.TONGUING:
+		anchor.on_released()
 		change_state(States.AIR)
 
 func change_state(new_state: States):
