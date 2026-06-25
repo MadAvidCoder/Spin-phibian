@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b6enfej1g1pcw" path="res://scripts/fader.gd" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dm0gln7oqt738" path="res://scenes/checkpoint.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dta8o7pnus7hy" path="res://scenes/magma_anchor.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://5aewqofpni6" path="res://scenes/speed_anchor.tscn" id="8_tipki"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("2_0wfyh")
@@ -186,3 +187,6 @@ position = Vector2(368, 455)
 
 [node name="MagmaAnchor" parent="." unique_id=209341494 instance=ExtResource("7_o6xl0")]
 position = Vector2(873, 420)
+
+[node name="SpeedAnchor" parent="." unique_id=1293402068 instance=ExtResource("8_tipki")]
+position = Vector2(695, 224)

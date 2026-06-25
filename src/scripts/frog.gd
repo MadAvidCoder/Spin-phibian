@@ -15,7 +15,7 @@ var state: States = States.AIR
 @export_category("Grappling")
 @export var pull_strength: float = 600.0
 @export var max_pull_speed: float = 450.0
-@export var angular_speed: float = 200
+var angular_speed: float = 0
 @export var pull_dist: float = 300.0
 @export var radial_speed: float = 50
 @export var radial_tolerance: float = 5
@@ -68,9 +68,9 @@ func on_anchor_clicked(targ_anchor: Anchor):
 			var dir = (anchor.global_position - global_position)
 			var cross = dir.cross(velocity)
 			if cross > 0:
-				angular_speed = -abs(angular_speed)
+				angular_speed = -abs(anchor.angular_speed)
 			else:
-				angular_speed = abs(angular_speed)
+				angular_speed = abs(anchor.angular_speed)
 
 func on_anchor_released():
 	if state == States.GRAPPLED or state == States.TONGUING:

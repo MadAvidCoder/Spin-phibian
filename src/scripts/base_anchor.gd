@@ -2,6 +2,7 @@ extends StaticBody2D
 class_name Anchor
 
 @export var orbit_radius: float = 100
+@export var angular_speed: float = 500
 
 var cursor
 var frog: CharacterBody2D

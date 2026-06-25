@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://b143qyca7ba5"]
+[gd_scene format=3 uid="uid://5aewqofpni6"]
 
-[ext_resource type="Script" uid="uid://dwkq7b7oj7v5" path="res://scripts/base_anchor.gd" id="1_gdjek"]
-[ext_resource type="Texture2D" uid="uid://bh71ieiwbq748" path="res://assets/sprites/basic anchor.png" id="2_hs5qy"]
+[ext_resource type="Script" uid="uid://vje5gm3fn3ac" path="res://scripts/speed_anchor.gd" id="1_gu86b"]
 [ext_resource type="Shader" uid="uid://dk82u8abh3jtm" path="res://shaders/anchor_outline.gdshader" id="2_lm60w"]
+[ext_resource type="Texture2D" uid="uid://c6ifch8evy20h" path="res://assets/sprites/speed anchor-Sheet.png" id="3_gu86b"]
 [ext_resource type="Script" uid="uid://c6aktqa8tmglg" path="res://scripts/orbit_radius.gd" id="3_ua340"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cus8"]
@@ -13,19 +13,113 @@ shader = ExtResource("2_lm60w")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
 shader_parameter/outline_thickness = 1.0000000475
 
-[node name="Anchor" type="StaticBody2D" unique_id=1354435780]
+[sub_resource type="AtlasTexture" id="AtlasTexture_814my"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6624h"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvcmb"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e5vw"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vg0gf"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spcwo"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86a31"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmu0v"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jwci"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v1x1"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x00n1"]
+atlas = ExtResource("3_gu86b")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcdno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_814my")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_6624h")
+}],
+"loop": 1,
+"name": &"hit",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvcmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e5vw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vg0gf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spcwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86a31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fmu0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jwci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v1x1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x00n1")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="SpeedAnchor" type="StaticBody2D" unique_id=759713572]
 collision_layer = 4
 collision_mask = 0
 input_pickable = true
-script = ExtResource("1_gdjek")
-metadata/_custom_type_script = "uid://dwkq7b7oj7v5"
+script = ExtResource("1_gu86b")
+orbit_radius = 150.0
+angular_speed = 900.0
+metadata/_custom_type_script = "uid://vje5gm3fn3ac"
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=871511499]
 shape = SubResource("CircleShape2D_2cus8")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1586985149]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1816754359]
 material = SubResource("ShaderMaterial_ua340")
-texture = ExtResource("2_hs5qy")
+sprite_frames = SubResource("SpriteFrames_jcdno")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="OrbitRadius" type="Node2D" parent="." unique_id=308353344]
 script = ExtResource("3_ua340")
