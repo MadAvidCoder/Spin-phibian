@@ -51,8 +51,10 @@ grapple={
 
 [layer_names]
 
-2d_physics/layer_1="Walls"
-2d_physics/layer_2="Anchors"
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Walls"
+2d_physics/layer_3="Anchors"
+2d_physics/layer_4="Checkpoints"
 
 [physics]
 

@@ -8,8 +8,8 @@ radius = 500.0
 
 [node name="Cursor" type="Area2D" unique_id=407595645 groups=["cursor"]]
 z_index = 10
-collision_layer = 2
-collision_mask = 2
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("1_fsq4c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=77655393]
