@@ -22,6 +22,11 @@ var angular_speed: float = 0
 @export var radial_tolerance: float = 5
 var angle: float = 0.0
 
+@export_category("Velocity Arrow")
+@export var line_length: float = 32.0
+@export var line_width: float = 2.5
+@export var line_colour: Color = Color.DARK_CYAN
+
 var anchor: Anchor
 
 @export_category("Platforming")
@@ -32,6 +37,8 @@ const SPEED: float = 200
 @onready var tongue: Node2D = $Tongue
 @onready var fader: CanvasLayer = $"../Fader"
 @onready var checkpoint: Checkpoint = $"../StartCheckpoint"
+
+var draw_dir = Vector2.RIGHT
 
 func _ready() -> void:
 	global_position = checkpoint.marker.global_position
@@ -46,6 +53,9 @@ func set_checkpoint(point: Checkpoint):
 func _physics_process(delta: float) -> void:
 	process_state(delta)
 	move_and_slide()
+	
+	queue_redraw()
+	draw_dir = draw_dir.slerp(velocity.normalized(), delta * 15.0)
 
 func respawn():
 	change_state(States.DEAD)
@@ -147,3 +157,15 @@ func process_state(delta: float):
 			
 			sprite.flip_h = false
 			sprite.rotation = sprite.global_position.direction_to(anchor.global_position).angle() + deg_to_rad(180)
+
+func _draw():
+	if state == States.GRAPPLED:
+		var target = draw_dir * line_length
+		
+		draw_line(Vector2.ZERO, target, line_colour, line_width)
+		var head_size = 7.0
+		var left = target - draw_dir * head_size + draw_dir.rotated(deg_to_rad(110)) * head_size
+		var right = target - draw_dir * head_size + draw_dir.rotated(deg_to_rad(-110)) * head_size
+		
+		draw_line(target, left, line_colour, line_width/2)
+		draw_line(target, right, line_colour, line_width/2)
