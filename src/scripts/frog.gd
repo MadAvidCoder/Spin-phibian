@@ -88,7 +88,7 @@ func change_state(new_state: States):
 
 func enter_state():
 	match state:
-		States.AIR:
+		States.AIR, States.FLOATING:
 			sprite.play("air")
 		States.TONGUING:
 			sprite.play("grapple")
