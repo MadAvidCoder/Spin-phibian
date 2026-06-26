@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dta8o7pnus7hy" path="res://scenes/magma_anchor.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://5aewqofpni6" path="res://scenes/speed_anchor.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://cu7elsjswrkhf" path="res://scenes/rainbow_anchor.tscn" id="9_85g3d"]
+[ext_resource type="Script" uid="uid://co5k42kcllaw7" path="res://scripts/camera.gd" id="10_choun"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("2_0wfyh")
@@ -194,3 +195,7 @@ position = Vector2(695, 224)
 
 [node name="RainbowAnchor" parent="." unique_id=786385282 instance=ExtResource("9_85g3d")]
 position = Vector2(495, 405)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1362966197]
+zoom = Vector2(3, 3)
+script = ExtResource("10_choun")
