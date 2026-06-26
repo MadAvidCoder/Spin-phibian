@@ -127,6 +127,19 @@ func process_state(delta: float):
 		
 		States.AIR:
 			velocity += gravity * delta
+			var input_direction = Input.get_axis("left", "right")
+
+			velocity.x = move_toward(
+				velocity.x,
+				input_direction * SPEED,
+				SPEED * 3.0 * delta
+			)
+
+			if input_direction == 1:
+				sprite.flip_h = true
+			elif input_direction == -1:
+				sprite.flip_h = false
+			
 			if is_on_floor():
 				change_state(States.GROUND)
 		
