@@ -27,7 +27,7 @@ var anchor: Anchor
 const SPEED: float = 200
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var tongue: Node2D = $Tongue
-@onready var fader: CanvasLayer = $"../Fader"
+@onready var fader: CanvasLayer = $"../../Fader"
 @onready var checkpoint: Checkpoint = $"../StartCheckpoint"
 
 func _ready() -> void:
