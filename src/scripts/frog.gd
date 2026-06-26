@@ -33,6 +33,7 @@ const SPEED: float = 200
 @onready var tongue: Node2D = $Tongue
 @onready var fader: CanvasLayer = $"../../Fader"
 @onready var checkpoint: Checkpoint = $"../StartCheckpoint"
+@onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 func _ready() -> void:
 	global_position = checkpoint.marker.global_position
@@ -137,8 +138,10 @@ func process_state(delta: float):
 
 			if input_direction == 1:
 				sprite.flip_h = true
+				collision_shape.position.x = -3.0
 			elif input_direction == -1:
 				sprite.flip_h = false
+				collision_shape.position.x = 3.0
 			
 			if is_on_floor():
 				change_state(States.GROUND)
@@ -147,8 +150,10 @@ func process_state(delta: float):
 			var input_direction = Input.get_axis("left", "right")
 			if input_direction == 1:
 				sprite.flip_h = true
+				collision_shape.position.x = -3.0
 			elif input_direction == -1:
 				sprite.flip_h = false
+				collision_shape.position.x = 3.0
 			velocity.x = input_direction * SPEED
 			
 			if Input.is_action_just_pressed("jump"):
@@ -173,4 +178,5 @@ func process_state(delta: float):
 			velocity = (radial_vel + tang_vel)
 			
 			sprite.flip_h = false
+			collision_shape.position.x = 3.0
 			sprite.rotation = sprite.global_position.direction_to(anchor.global_position).angle() + deg_to_rad(180)
