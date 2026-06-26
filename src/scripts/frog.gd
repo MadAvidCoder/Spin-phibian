@@ -26,6 +26,7 @@ var anchor: Anchor
 
 @export_category("Platforming")
 @export var gravity: Vector2 = Vector2(0, 50)
+@export var jump_velocity: float = -200.0
 
 const SPEED: float = 200
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -136,6 +137,11 @@ func process_state(delta: float):
 			elif input_direction == -1:
 				sprite.flip_h = false
 			velocity.x = input_direction * SPEED
+			
+			if Input.is_action_just_pressed("jump"):
+				velocity.y = jump_velocity
+				change_state(States.AIR)
+				return
 			
 			if not is_on_floor():
 				change_state(States.AIR)
