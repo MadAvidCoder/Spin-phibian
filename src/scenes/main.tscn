@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://5aewqofpni6" path="res://scenes/speed_anchor.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://cu7elsjswrkhf" path="res://scenes/rainbow_anchor.tscn" id="9_85g3d"]
 [ext_resource type="Script" uid="uid://co5k42kcllaw7" path="res://scripts/camera.gd" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://b6gwv5psrsfay" path="res://scenes/crystal_anchor.tscn" id="11_ya4ey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
 texture = ExtResource("2_0wfyh")
@@ -199,3 +200,7 @@ position = Vector2(368, 455)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1362966197]
 zoom = Vector2(3, 3)
 script = ExtResource("10_choun")
+
+[node name="CrystalAnchor" parent="." unique_id=306258942 instance=ExtResource("11_ya4ey")]
+position = Vector2(681, 344)
+reset_time = 2.0

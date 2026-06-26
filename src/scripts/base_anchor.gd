@@ -5,7 +5,8 @@ enum AnchorTypes {
 	BASE,
 	MAGMA, 
 	SPEED,
-	RAINBOW
+	RAINBOW,
+	CRYSTAL,
 }
 
 @export var orbit_radius: float = 100

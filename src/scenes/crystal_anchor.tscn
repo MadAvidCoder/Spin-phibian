@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://b6gwv5psrsfay"]
+
+[ext_resource type="Script" uid="uid://cbts4hbph0bwn" path="res://scripts/crystal_anchor.gd" id="1_lwxah"]
+[ext_resource type="Shader" uid="uid://dk82u8abh3jtm" path="res://shaders/anchor_outline.gdshader" id="2_w4xav"]
+[ext_resource type="Texture2D" uid="uid://barq67eed08is" path="res://icon.svg" id="3_lwxah"]
+[ext_resource type="Script" uid="uid://c6aktqa8tmglg" path="res://scripts/orbit_radius.gd" id="4_bmviu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2cus8"]
+radius = 7.071068
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ua340"]
+shader = ExtResource("2_w4xav")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_thickness = 1.0000000475
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4xav"]
+atlas = ExtResource("3_lwxah")
+region = Rect2(0, 21, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwxsw"]
+atlas = ExtResource("3_lwxah")
+region = Rect2(21, 21, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmviu"]
+atlas = ExtResource("3_lwxah")
+region = Rect2(42, 21, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q33qv"]
+atlas = ExtResource("3_lwxah")
+region = Rect2(63, 21, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1bsi"]
+atlas = ExtResource("3_lwxah")
+region = Rect2(84, 21, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itmye"]
+atlas = ExtResource("3_lwxah")
+region = Rect2(105, 21, 21, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdj6f"]
+atlas = ExtResource("3_lwxah")
+region = Rect2(84, 42, 21, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcdno"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4xav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwxsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmviu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q33qv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1bsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itmye")
+}],
+"loop": 0,
+"name": &"cracking",
+"speed": 3.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"crumble",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdj6f")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="CrystalAnchor" type="StaticBody2D" unique_id=306258942]
+collision_layer = 4
+collision_mask = 0
+input_pickable = true
+script = ExtResource("1_lwxah")
+metadata/_custom_type_script = "uid://cbts4hbph0bwn"
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="." unique_id=871511499]
+shape = SubResource("CircleShape2D_2cus8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=550476704]
+material = SubResource("ShaderMaterial_ua340")
+sprite_frames = SubResource("SpriteFrames_jcdno")
+animation = &"cracking"
+autoplay = "idle"
+
+[node name="OrbitRadius" type="Node2D" parent="." unique_id=308353344]
+script = ExtResource("4_bmviu")
+
+[node name="Timer" type="Timer" parent="." unique_id=1939199405]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
