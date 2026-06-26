@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvrht7emgl5wx"
-path="res://.godot/imported/magma anchor-Sheet.png-9c15c3d5b470d207ac118260eea3855f.ctex"
+uid="uid://bc3nsmekafkid"
+path="res://.godot/imported/rainbow_anchor.png-7cf1ad1c3639332567fd28d7b18ca736.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/magma anchor-Sheet.png"
-dest_files=["res://.godot/imported/magma anchor-Sheet.png-9c15c3d5b470d207ac118260eea3855f.ctex"]
+source_file="res://assets/sprites/rainbow_anchor.png"
+dest_files=["res://.godot/imported/rainbow_anchor.png-7cf1ad1c3639332567fd28d7b18ca736.ctex"]
 
 [params]
 
