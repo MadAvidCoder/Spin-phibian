@@ -112,6 +112,10 @@ func exit_state():
 
 func process_state(delta: float):
 	match state:
+		States.FLOATING:
+			if is_on_floor():
+				change_state(States.GROUND)
+		
 		States.AIR:
 			velocity += gravity * delta
 			if is_on_floor():
