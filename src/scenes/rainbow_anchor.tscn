@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cu7elsjswrkhf"]
 
 [ext_resource type="Script" uid="uid://d0datcxbds1c" path="res://scripts/rainbow_anchor.gd" id="1_0ymkj"]
-[ext_resource type="Texture2D" uid="uid://bh71ieiwbq748" path="res://assets/sprites/basic anchor.png" id="2_hs5qy"]
 [ext_resource type="Shader" uid="uid://dk82u8abh3jtm" path="res://shaders/anchor_outline.gdshader" id="2_lm60w"]
+[ext_resource type="Texture2D" uid="uid://bc3nsmekafkid" path="res://assets/sprites/rainbow_anchor.png" id="3_0ymkj"]
 [ext_resource type="Script" uid="uid://c6aktqa8tmglg" path="res://scripts/orbit_radius.gd" id="3_ua340"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cus8"]
@@ -25,8 +25,7 @@ shape = SubResource("CircleShape2D_2cus8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1586985149]
 material = SubResource("ShaderMaterial_ua340")
-texture = ExtResource("2_hs5qy")
-flip_v = true
+texture = ExtResource("3_0ymkj")
 
 [node name="OrbitRadius" type="Node2D" parent="." unique_id=308353344]
 script = ExtResource("3_ua340")
