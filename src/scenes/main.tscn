@@ -427,7 +427,7 @@ metadata/_edit_lock_ = true
 position = Vector2(383, 286)
 
 [node name="Anchor2" parent="Gameplay/Anchors" unique_id=1674688037 instance=ExtResource("3_sugp2")]
-position = Vector2(612, 359)
+position = Vector2(587, 387)
 
 [node name="Anchor3" parent="Gameplay/Anchors" unique_id=742233398 instance=ExtResource("3_sugp2")]
 position = Vector2(797, 324)
@@ -443,6 +443,15 @@ position = Vector2(582, -70)
 
 [node name="Anchor7" parent="Gameplay/Anchors" unique_id=1579248084 instance=ExtResource("3_sugp2")]
 position = Vector2(828, -43)
+
+[node name="MagmaAnchor" parent="Gameplay/Anchors" unique_id=209341494 instance=ExtResource("7_o6xl0")]
+position = Vector2(245, 374)
+
+[node name="RainbowAnchor" parent="Gameplay/Anchors" unique_id=786385282 instance=ExtResource("9_85g3d")]
+position = Vector2(632, 284)
+
+[node name="SpeedAnchor" parent="Gameplay/Anchors" unique_id=759713572 instance=ExtResource("8_tipki")]
+position = Vector2(294, 238)
 
 [node name="Checkpoints" type="Node2D" parent="Gameplay" unique_id=1590479324]
 
