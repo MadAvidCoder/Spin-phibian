@@ -183,10 +183,6 @@ position = Vector2(280, 457)
 [node name="Checkpoint" parent="." unique_id=1289367084 instance=ExtResource("6_tefeu")]
 position = Vector2(476, 461)
 
-[node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
-unique_name_in_owner = true
-position = Vector2(368, 455)
-
 [node name="MagmaAnchor" parent="." unique_id=209341494 instance=ExtResource("7_o6xl0")]
 position = Vector2(873, 420)
 
@@ -195,6 +191,10 @@ position = Vector2(695, 224)
 
 [node name="RainbowAnchor" parent="." unique_id=786385282 instance=ExtResource("9_85g3d")]
 position = Vector2(495, 405)
+
+[node name="Frog" parent="." unique_id=1809645032 instance=ExtResource("1_o5qli")]
+unique_name_in_owner = true
+position = Vector2(368, 455)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1362966197]
 zoom = Vector2(3, 3)

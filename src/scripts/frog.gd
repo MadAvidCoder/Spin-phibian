@@ -109,6 +109,14 @@ func exit_state():
 			tween.set_trans(Tween.TRANS_BACK)
 			tween.tween_property(sprite, "rotation", 0.0, 0.4)
 			tongue.retract()
+			
+			var offset = global_position - anchor.global_position
+			var tangent = Vector2(-offset.y, offset.x).normalized()
+
+			if angular_speed < 0:
+				tangent *= -1
+			
+			velocity = tangent * abs(angular_speed)
 
 func process_state(delta: float):
 	match state:
