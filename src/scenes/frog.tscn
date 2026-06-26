@@ -86,7 +86,3 @@ script = ExtResource("3_rq8tc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1216859066]
 position = Vector2(3, 2)
 shape = SubResource("RectangleShape2D_n83mn")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1195909772]
-zoom = Vector2(4, 4)
-position_smoothing_speed = 8.0
