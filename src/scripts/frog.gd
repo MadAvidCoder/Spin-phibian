@@ -123,6 +123,8 @@ func process_state(delta: float):
 		States.FLOATING:
 			if is_on_floor():
 				change_state(States.GROUND)
+			elif is_on_ceiling() or is_on_wall():
+				change_state(States.AIR)
 		
 		States.AIR:
 			velocity += gravity * delta
