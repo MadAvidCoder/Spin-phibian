@@ -3,17 +3,20 @@ extends CharacterBody2D
 enum States {
 	GROUND,
 	AIR,
+	FLOATING,
 	TONGUING,
 	GRAPPLED,
 	DEAD,
 }
+
+signal respawned
 
 var state: States = States.AIR
 
 @export_category("Grappling")
 @export var pull_strength: float = 600.0
 @export var max_pull_speed: float = 450.0
-@export var angular_speed: float = 200
+var angular_speed: float = 0
 @export var pull_dist: float = 300.0
 @export var radial_speed: float = 50
 @export var radial_tolerance: float = 5
@@ -48,14 +51,16 @@ func respawn():
 	change_state(States.DEAD)
 	await fader.fade_out()
 	global_position = checkpoint.marker.global_position
+	respawned.emit()
 	await fader.hold()
 	await fader.fade_in()
 	change_state(States.AIR)
 
 func on_anchor_clicked(targ_anchor: Anchor):
-	if state == States.GROUND or state == States.AIR:
+	if state == States.GROUND or state == States.AIR or state == States.FLOATING:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
+			
 			change_state(States.TONGUING)
 			tongue.extend(func():
 				if state == States.TONGUING: change_state(States.GRAPPLED)
@@ -64,13 +69,17 @@ func on_anchor_clicked(targ_anchor: Anchor):
 			var dir = (anchor.global_position - global_position)
 			var cross = dir.cross(velocity)
 			if cross > 0:
-				angular_speed = -abs(angular_speed)
+				angular_speed = -abs(anchor.angular_speed)
 			else:
-				angular_speed = abs(angular_speed)
+				angular_speed = abs(anchor.angular_speed)
 
 func on_anchor_released():
 	if state == States.GRAPPLED or state == States.TONGUING:
-		change_state(States.AIR)
+		anchor.on_released()
+		if anchor.type == Anchor.AnchorTypes.RAINBOW:
+			change_state(States.FLOATING)
+		else:
+			change_state(States.AIR)
 
 func change_state(new_state: States):
 	exit_state()
@@ -79,12 +88,14 @@ func change_state(new_state: States):
 
 func enter_state():
 	match state:
-		States.AIR:
+		States.AIR, States.FLOATING:
 			sprite.play("air")
 		States.TONGUING:
 			sprite.play("grapple")
 		States.GROUND:
 			sprite.play("idle")
+		States.GRAPPLED:
+			anchor.on_grabbed()
 		States.DEAD:
 			velocity = Vector2.ZERO
 
@@ -101,6 +112,10 @@ func exit_state():
 
 func process_state(delta: float):
 	match state:
+		States.FLOATING:
+			if is_on_floor():
+				change_state(States.GROUND)
+		
 		States.AIR:
 			velocity += gravity * delta
 			if is_on_floor():
