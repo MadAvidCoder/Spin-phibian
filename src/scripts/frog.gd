@@ -47,6 +47,12 @@ func set_checkpoint(point: Checkpoint):
 func _physics_process(delta: float) -> void:
 	process_state(delta)
 	move_and_slide()
+	
+	for c in get_slide_collision_count():
+		var collision = get_slide_collision(c)
+		var rid = collision.get_collider_rid()
+		if PhysicsServer2D.body_get_collision_layer(rid) & 0b10000:
+			respawn()
 
 func respawn():
 	change_state(States.DEAD)
