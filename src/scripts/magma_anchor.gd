@@ -7,6 +7,7 @@ class_name MagmaAnchor
 
 func _ready():
 	super._ready()
+	type = AnchorTypes.MAGMA
 	frog.respawned.connect(_on_frog_respawned)
 
 func on_grabbed():

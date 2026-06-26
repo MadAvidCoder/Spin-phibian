@@ -1,6 +1,13 @@
 extends StaticBody2D
 class_name Anchor
 
+enum AnchorTypes {
+	BASE,
+	MAGMA, 
+	SPEED,
+	RAINBOW
+}
+
 @export var orbit_radius: float = 100
 @export var angular_speed: float = 500
 
@@ -11,7 +18,10 @@ var mat : ShaderMaterial
 
 var is_grabbed: bool = false
 
+var type: AnchorTypes
+
 func _ready() -> void:
+	type = AnchorTypes.BASE
 	cursor = get_tree().get_first_node_in_group("cursor")
 	frog = get_tree().get_first_node_in_group("frog")
 	for child in get_children():

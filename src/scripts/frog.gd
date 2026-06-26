@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum States {
 	GROUND,
 	AIR,
+	FLOATING,
 	TONGUING,
 	GRAPPLED,
 	DEAD,
@@ -56,7 +57,7 @@ func respawn():
 	change_state(States.AIR)
 
 func on_anchor_clicked(targ_anchor: Anchor):
-	if state == States.GROUND or state == States.AIR:
+	if state == States.GROUND or state == States.AIR or state == States.FLOATING:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
 			
@@ -75,7 +76,10 @@ func on_anchor_clicked(targ_anchor: Anchor):
 func on_anchor_released():
 	if state == States.GRAPPLED or state == States.TONGUING:
 		anchor.on_released()
-		change_state(States.AIR)
+		if anchor.type == Anchor.AnchorTypes.RAINBOW:
+			change_state(States.FLOATING)
+		else:
+			change_state(States.AIR)
 
 func change_state(new_state: States):
 	exit_state()
