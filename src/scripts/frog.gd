@@ -26,7 +26,7 @@ var anchor: Anchor
 
 @export_category("Platforming")
 @export var gravity: Vector2 = Vector2(0, 50)
-@export var jump_velocity: float = -200.0
+@export var jump_velocity: float = -250.0
 
 const SPEED: float = 200
 @onready var sprite: AnimatedSprite2D = $Sprite
