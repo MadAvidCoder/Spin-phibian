@@ -66,7 +66,7 @@ func respawn():
 	change_state(States.AIR)
 
 func on_anchor_clicked(targ_anchor: Anchor):
-	if state == States.GROUND or state == States.AIR or state == States.FLOATING:
+	if state in [States.GROUND, States.AIR, States.FLOATING, States.JUMPING]:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
 			
@@ -101,7 +101,7 @@ func change_state(new_state: States):
 
 func enter_state():
 	match state:
-		States.AIR, States.FLOATING:
+		States.AIR, States.FLOATING, States.JUMPING:
 			sprite.play("air")
 		States.TONGUING:
 			sprite.play("grapple")
@@ -116,8 +116,6 @@ func enter_state():
 
 func exit_state():
 	match state:
-		States.AIR:
-			pass
 		States.GRAPPLED:
 			var tween = create_tween()
 			tween.set_ease(Tween.EASE_OUT)
