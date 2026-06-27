@@ -29,7 +29,7 @@
 size = Vector2(213, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jscy8"]
-size = Vector2(19, 207)
+size = Vector2(207, 158)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_muem4"]
 texture = ExtResource("4_jbj1t")
@@ -1241,7 +1241,7 @@ parameters/looping = true
 [node name="FreedomTrigger" type="Area2D" parent="Music" unique_id=500729285]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Music/FreedomTrigger" unique_id=856577070]
-position = Vector2(9459.5, 1183.5)
+position = Vector2(9681.5, 189)
 shape = SubResource("RectangleShape2D_jscy8")
 
 [node name="FlagSFX" type="AudioStreamPlayer" parent="Music" unique_id=1620612982 groups=["flag"]]
@@ -1530,20 +1530,6 @@ label_settings = SubResource("LabelSettings_n83mn")
 [node name="FinishLine" type="Node2D" parent="." unique_id=1621913679]
 position = Vector2(11363.834, 435.67502)
 
-[node name="ColorRect" type="ColorRect" parent="sky" unique_id=2094162250]
-z_index = -20
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -3455.0
-offset_top = 538.0
-offset_right = -3455.0
-offset_bottom = 538.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[connection signal="body_entered" from="Music/VolcanoTrigger" to="." method="_on_volcano_trigger_body_entered"]
-[connection signal="body_entered" from="Music/FreedomTrigger" to="." method="_on_freedom_trigger_body_entered"]
 [node name="Sprite2D" type="Sprite2D" parent="FinishLine" unique_id=1988037329]
 position = Vector2(244.16602, -17.675018)
 texture = ExtResource("17_muem4")
@@ -1562,4 +1548,18 @@ script = ExtResource("18_dp3eg")
 position = Vector2(236.16602, -26.090637)
 shape = SubResource("RectangleShape2D_0ld40")
 
+[node name="sky#ColorRect" type="ColorRect" parent="." unique_id=2094162250]
+z_index = -20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3455.0
+offset_top = 538.0
+offset_right = -3455.0
+offset_bottom = 538.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="body_entered" from="Music/VolcanoTrigger" to="." method="_on_volcano_trigger_body_entered"]
+[connection signal="body_entered" from="Music/FreedomTrigger" to="." method="_on_freedom_trigger_body_entered"]
 [connection signal="body_entered" from="FinishLine/Area2D" to="FinishLine/Label" method="_on_area_2d_body_entered"]
