@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/freedom.ogg-66d2849598767672a1ad6676b3c2cb28.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

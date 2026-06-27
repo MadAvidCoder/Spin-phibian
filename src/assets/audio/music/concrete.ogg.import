@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/concrete.ogg-4a03c7009978f5bcac41727c5cc0a0b9
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
