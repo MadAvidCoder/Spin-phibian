@@ -114,6 +114,7 @@ func enter_state():
 	match state:
 		States.AIR, States.FLOATING, States.JUMPING:
 			sprite.play("air")
+			sprite.flip_h = sign(velocity.x) == 1
 		States.TONGUING:
 			sprite.play("grapple")
 		States.GROUND:
@@ -126,6 +127,8 @@ func enter_state():
 			sprite.play("death")
 		States.GOD:
 			god_released = false
+		States.FLOATING:
+			sprite.flip_h = sign(velocity.x) == 1
 
 func exit_state():
 	match state:
