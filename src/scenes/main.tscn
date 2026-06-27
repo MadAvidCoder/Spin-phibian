@@ -29,8 +29,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2cus8"]
 size = Vector2(213, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jscy8"]
-size = Vector2(207, 158)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_wgq7h"]
+points = PackedVector2Array(57.75, 69.5, 60.75, 61.5, -46.25, -47.5, -55.25, -45.5)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_muem4"]
 texture = ExtResource("4_jbj1t")
@@ -1247,8 +1247,8 @@ parameters/looping = true
 [node name="FreedomTrigger" type="Area2D" parent="Music" unique_id=500729285]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Music/FreedomTrigger" unique_id=856577070]
-position = Vector2(9681.5, 189)
-shape = SubResource("RectangleShape2D_jscy8")
+position = Vector2(9671.25, 190.5)
+shape = SubResource("ConvexPolygonShape2D_wgq7h")
 
 [node name="FlagSFX" type="AudioStreamPlayer" parent="Music" unique_id=1620612982 groups=["flag"]]
 stream = ExtResource("5_og1vs")
