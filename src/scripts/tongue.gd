@@ -7,18 +7,26 @@ extends Node2D
 
 var tongue_progress: float = 0.0 
 
+@onready var tween: Tween
+
 func _process(delta: float) -> void:
 	queue_redraw()
 
 func extend(x):
+	if tween:
+		if tween.is_running():
+			tween.kill()
 	tongue_progress = 0.0
-	var tween = create_tween()
+	tween = create_tween()
 	tween.tween_property(self, "tongue_progress", 1.0, 0.2)
 	tween.set_ease(Tween.EASE_OUT)
 	tween.tween_callback(x)
 
 func retract():
-	var tween = create_tween()
+	if tween:
+		if tween.is_running():
+			tween.kill()
+	tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "tongue_progress", 0.0, tongue_retract_time)
 

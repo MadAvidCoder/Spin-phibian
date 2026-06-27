@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vje5gm3fn3ac" path="res://scripts/speed_anchor.gd" id="1_gu86b"]
 [ext_resource type="Shader" uid="uid://dk82u8abh3jtm" path="res://shaders/anchor_outline.gdshader" id="2_lm60w"]
-[ext_resource type="Texture2D" uid="uid://c6ifch8evy20h" path="res://assets/sprites/speed anchor-Sheet.png" id="3_gu86b"]
+[ext_resource type="Texture2D" uid="uid://d3kny40ce3y5k" path="res://assets/sprites/speed anchor-Sheet.png" id="3_gu86b"]
 [ext_resource type="Script" uid="uid://c6aktqa8tmglg" path="res://scripts/orbit_radius.gd" id="3_ua340"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cus8"]
