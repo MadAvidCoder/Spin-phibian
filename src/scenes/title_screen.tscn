@@ -93,7 +93,7 @@ animations = [{
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_alp7y"]
 atlas = ExtResource("3_mgrm8")
-region = Rect2(16, 48, 47.93215, 16)
+region = Rect2(16, 48, 48, 16)
 
 [node name="TitleScreen" type="CanvasLayer" unique_id=1287103616]
 script = ExtResource("1_mgrm8")
