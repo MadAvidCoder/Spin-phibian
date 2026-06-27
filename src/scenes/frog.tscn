@@ -68,7 +68,7 @@ animations = [{
 size = Vector2(14, 9)
 
 [node name="Frog" type="CharacterBody2D" unique_id=1809645032 groups=["frog"]]
-collision_mask = 2
+collision_mask = 18
 script = ExtResource("1_qyo2l")
 pull_dist = 128.0
 gravity = Vector2(0, 900)
