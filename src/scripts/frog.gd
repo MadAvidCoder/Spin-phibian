@@ -38,10 +38,6 @@ const SPEED: float = 200
 func _ready() -> void:
 	global_position = checkpoint.marker.global_position
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		respawn()
-
 func set_checkpoint(point: Checkpoint):
 	checkpoint.sprite.play("going_down")
 	checkpoint = point
