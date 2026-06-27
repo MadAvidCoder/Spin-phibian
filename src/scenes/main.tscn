@@ -1259,6 +1259,7 @@ stream = ExtResource("6_2wyq8")
 
 [node name="SquelchSFX" type="AudioStreamPlayer" parent="Music" unique_id=1657860946 groups=["squelch"]]
 stream = ExtResource("7_vxglm")
+volume_db = -12.0
 
 [node name="Fader" type="CanvasLayer" parent="." unique_id=1235757295]
 script = ExtResource("5_tbgi4")
@@ -1539,6 +1540,18 @@ position = Vector2(11363.834, 435.67502)
 [node name="Sprite2D" type="Sprite2D" parent="FinishLine" unique_id=1988037329]
 position = Vector2(244.16602, -17.675018)
 texture = ExtResource("17_muem4")
+
+[node name="Label4" type="Label" parent="FinishLine" unique_id=1959453185]
+offset_left = 151.16602
+offset_top = -166.67502
+offset_right = 318.16602
+offset_bottom = -97.67502
+text = "Thank you for playing
+
+You escaped the
+land of SERIOUSNESS!"
+label_settings = SubResource("LabelSettings_n83mn")
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinishLine" unique_id=1699709458]
 offset_left = 220.16602
