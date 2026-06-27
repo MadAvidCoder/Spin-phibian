@@ -103,6 +103,7 @@ func enter_state():
 			anchor.on_grabbed()
 		States.DEAD:
 			velocity = Vector2.ZERO
+			sprite.play("death")
 
 func exit_state():
 	match state:

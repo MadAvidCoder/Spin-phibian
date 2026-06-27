@@ -8,6 +8,10 @@
 atlas = ExtResource("2_qyo2l")
 region = Rect2(0, 144, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycnbg"]
+atlas = ExtResource("2_qyo2l")
+region = Rect2(96, 48, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rq8tc"]
 atlas = ExtResource("2_qyo2l")
 region = Rect2(0, 48, 48, 48)
@@ -36,6 +40,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycnbg")
+}],
+"loop": 1,
+"name": &"death",
 "speed": 5.0
 }, {
 "frames": [{
@@ -75,9 +87,7 @@ gravity = Vector2(0, 900)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1201950172]
 sprite_frames = SubResource("SpriteFrames_2cus8")
-animation = &"grapple"
-frame = 2
-frame_progress = 1.0
+animation = &"death"
 
 [node name="Tongue" type="Node2D" parent="." unique_id=1559968155]
 script = ExtResource("3_rq8tc")
