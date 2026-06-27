@@ -201,3 +201,7 @@ func process_state(delta: float):
 				change_state(States.AIR)
 			if is_on_floor() and has_left_floor:
 				change_state(States.GROUND)
+			
+			raycast.target_position = to_local(anchor.global_position)
+			if raycast.is_colliding():
+				change_state(States.AIR)
