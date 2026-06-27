@@ -9,6 +9,7 @@ enum States {
 	GRAPPLED,
 	DEAD,
 	GOD,
+	PLATFORM_AIR,
 }
 
 signal respawned
@@ -188,7 +189,7 @@ func process_state(delta: float):
 				return
 			
 			if not is_on_floor():
-				change_state(States.AIR)
+				change_state(States.PLATFORM_AIR)
 		
 		States.GRAPPLED:
 			var offset = anchor.global_position - global_position
@@ -229,3 +230,23 @@ func process_state(delta: float):
 			if Input.is_action_pressed("god") and god_released:
 				change_state(States.AIR)
 				print("hellow")
+		
+		States.PLATFORM_AIR:
+			velocity += gravity * delta
+			var input_direction = Input.get_axis("left", "right")
+
+			velocity.x = move_toward(
+				velocity.x,
+				input_direction * SPEED,
+				SPEED * 4.3 * delta
+			)
+
+			if input_direction == 1:
+				sprite.flip_h = true
+				collision_shape.position.x = -3.0
+			elif input_direction == -1:
+				sprite.flip_h = false
+				collision_shape.position.x = 3.0
+		
+			if is_on_floor():
+				change_state(States.GROUND)
