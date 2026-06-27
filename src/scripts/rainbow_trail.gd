@@ -3,6 +3,7 @@ extends Line2D
 var active : bool = true
 var max_points = 50
 var frog : CharacterBody2D
+
 func _ready() -> void:
 	frog = get_tree().get_first_node_in_group("frog")
 

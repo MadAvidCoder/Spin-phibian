@@ -8,7 +8,7 @@ extends Camera2D
 var focus_position: Vector2
 var grapple_blend: float = 0.0
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	grapple_blend = move_toward(
 		grapple_blend,
 		1.0 if frog.state == frog.States.GRAPPLED or frog.state == frog.States.TONGUING else 0.0,
