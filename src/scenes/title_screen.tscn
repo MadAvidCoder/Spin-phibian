@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://b6xkx4s57ibu"]
+
+[ext_resource type="Texture2D" uid="uid://cutlr7q3wn18y" path="res://assets/sprites/play_button.png" id="1_fgkus"]
+[ext_resource type="Script" uid="uid://cwrplgmrrqsqi" path="res://scripts/title.gd" id="1_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://csgvv7t3jfw6h" path="res://assets/sprites/frog-Sheet.png" id="2_s4lrb"]
+[ext_resource type="Texture2D" uid="uid://bgj2hidoxg36h" path="res://assets/sprites/grass tileset.png" id="3_mgrm8"]
+[ext_resource type="Script" uid="uid://it58aike7i4h" path="res://scripts/title_sprite.gd" id="4_dc4i4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r44n"]
+atlas = ExtResource("1_fgkus")
+region = Rect2(2, 10, 64, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa3yf"]
+atlas = ExtResource("1_fgkus")
+region = Rect2(138, 10, 64, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s4lrb"]
+atlas = ExtResource("1_fgkus")
+region = Rect2(70, 10, 64, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyo2l"]
+atlas = ExtResource("2_s4lrb")
+region = Rect2(0, 144, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycnbg"]
+atlas = ExtResource("2_s4lrb")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq8tc"]
+atlas = ExtResource("2_s4lrb")
+region = Rect2(0, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g2vb"]
+atlas = ExtResource("2_s4lrb")
+region = Rect2(48, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybftx"]
+atlas = ExtResource("2_s4lrb")
+region = Rect2(96, 48, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ifle"]
+atlas = ExtResource("2_s4lrb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uu7fg"]
+atlas = ExtResource("2_s4lrb")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dc4i4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyo2l")
+}],
+"loop": 1,
+"name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycnbg")
+}],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rq8tc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g2vb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybftx")
+}],
+"loop": 0,
+"name": &"grapple",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ifle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uu7fg")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 1.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alp7y"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(16, 48, 47.93215, 16)
+
+[node name="TitleScreen" type="CanvasLayer" unique_id=1287103616]
+script = ExtResource("1_mgrm8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1968945812]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.53333336, 0.8235294, 1, 1)
+metadata/_edit_lock_ = true
+
+[node name="PlayButton" type="TextureButton" parent="." unique_id=1337999006]
+offset_left = 1299.0
+offset_top = 1200.0001
+offset_right = 1363.0
+offset_bottom = 1227.0001
+scale = Vector2(10, 10)
+texture_normal = SubResource("AtlasTexture_7r44n")
+texture_pressed = SubResource("AtlasTexture_sa3yf")
+texture_hover = SubResource("AtlasTexture_s4lrb")
+texture_disabled = SubResource("AtlasTexture_sa3yf")
+texture_focused = SubResource("AtlasTexture_s4lrb")
+
+[node name="Marker2D" type="Marker2D" parent="PlayButton" unique_id=6447788]
+position = Vector2(31.999992, 12.999992)
+scale = Vector2(0.99999994, 0.99999994)
+gizmo_extents = 25.0
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2088454749]
+position = Vector2(2773.9995, 1397)
+scale = Vector2(16, 16)
+sprite_frames = SubResource("SpriteFrames_dc4i4")
+animation = &"grapple"
+script = ExtResource("4_dc4i4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2132382360]
+position = Vector2(2932.9998, 1664.0001)
+scale = Vector2(19.225, 19.225)
+texture = SubResource("AtlasTexture_alp7y")
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]

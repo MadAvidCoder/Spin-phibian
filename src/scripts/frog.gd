@@ -77,7 +77,6 @@ func on_anchor_clicked(targ_anchor: Anchor):
 			raycast.target_position = to_local(anchor.global_position)
 			raycast.force_raycast_update()
 			if raycast.is_colliding():
-				print(raycast.get_collider().name)
 				return
 			
 			change_state(States.TONGUING)
