@@ -8,11 +8,13 @@ enum States {
 	TONGUING,
 	GRAPPLED,
 	DEAD,
+	GOD,
 }
 
 signal respawned
 
 var state: States = States.AIR
+var god_released = false
 
 @export_category("Grappling")
 @export var pull_strength: float = 600.0
@@ -47,8 +49,11 @@ func set_checkpoint(point: Checkpoint):
 	checkpoint = point
 
 func _physics_process(delta: float) -> void:
+	if state != States.GOD and Input.is_action_just_pressed("god"):
+		change_state(States.GOD)
 	process_state(delta)
 	move_and_slide()
+	
 	
 	for c in get_slide_collision_count():
 		var collision = get_slide_collision(c)
@@ -114,6 +119,8 @@ func enter_state():
 		States.DEAD:
 			velocity = Vector2.ZERO
 			sprite.play("death")
+		States.GOD:
+			god_released = false
 
 func exit_state():
 	match state:
@@ -213,3 +220,13 @@ func process_state(delta: float):
 			raycast.target_position = to_local(anchor.global_position)
 			if raycast.is_colliding():
 				change_state(States.AIR)
+			
+		States.GOD:
+			velocity = Vector2(Input.get_axis("left", "right"), Input.get_axis("jump", "down")) * 600
+			if god_released == false and !Input.is_action_pressed("god"):
+				god_released = true
+				print("hi")
+			
+			if Input.is_action_pressed("god") and god_released:
+				change_state(States.AIR)
+				print("hellow")
