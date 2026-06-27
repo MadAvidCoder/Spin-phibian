@@ -15,6 +15,7 @@ var cursor
 var frog: CharacterBody2D
 var sprite: Node2D
 var mat : ShaderMaterial
+var sizzle
 
 var is_grabbed: bool = false
 
@@ -24,6 +25,8 @@ func _ready() -> void:
 	type = AnchorTypes.BASE
 	cursor = get_tree().get_first_node_in_group("cursor")
 	frog = get_tree().get_first_node_in_group("frog")
+	sizzle = get_tree().get_first_node_in_group("sizzle")
+	
 	for child in get_children():
 		if child is Sprite2D or child is AnimatedSprite2D:
 			sprite = child

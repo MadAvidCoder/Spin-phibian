@@ -39,6 +39,8 @@ const SPEED: float = 200
 @onready var checkpoint: Checkpoint = $"../StartCheckpoint"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var raycast: RayCast2D = $RayCast2D
+@onready var flag_sfx: AudioStreamPlayer = $"../../Music/FlagSFX"
+@onready var squelch_sfx: AudioStreamPlayer = $"../../Music/SquelchSFX"
 
 var has_left_floor: bool = false
 
@@ -48,10 +50,11 @@ func _ready() -> void:
 func set_checkpoint(point: Checkpoint):
 	checkpoint.sprite.play("going_down")
 	checkpoint = point
+	flag_sfx.play()
 
 func _physics_process(delta: float) -> void:
-	#if state != States.GOD and Input.is_action_just_pressed("god"):
-	#	change_state(States.GOD)
+	if state != States.GOD and Input.is_action_just_pressed("god"):
+		change_state(States.GOD)
 	process_state(delta)
 	move_and_slide()
 	
@@ -82,8 +85,9 @@ func on_anchor_clicked(targ_anchor: Anchor):
 			
 			change_state(States.TONGUING)
 			tongue.extend(func():
+				squelch_sfx.play()
 				if state == States.TONGUING: change_state(States.GRAPPLED)
-				else: tongue.retract())
+				else: tongue.retract(func(): squelch_sfx.play()))
 
 			var dir = (anchor.global_position - global_position)
 			var cross = dir.cross(velocity)
@@ -129,7 +133,7 @@ func exit_state():
 			tween.set_ease(Tween.EASE_OUT)
 			tween.set_trans(Tween.TRANS_BACK)
 			tween.tween_property(sprite, "rotation", 0.0, 0.4)
-			tongue.retract()
+			tongue.retract(func(): squelch_sfx.play())
 			
 			var offset = global_position - anchor.global_position
 			var tangent = Vector2(-offset.y, offset.x).normalized()

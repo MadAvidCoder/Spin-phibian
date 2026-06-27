@@ -3,12 +3,18 @@
 [ext_resource type="Script" uid="uid://dh6elx3bkgkqh" path="res://scripts/main.gd" id="1_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://dgu8gco2updb7" path="res://scenes/frog.tscn" id="1_o5qli"]
 [ext_resource type="Texture2D" uid="uid://bgj2hidoxg36h" path="res://assets/sprites/grass tileset.png" id="1_tefeu"]
+[ext_resource type="AudioStream" uid="uid://dbvc14d52c8dj" path="res://assets/audio/music/concrete.ogg" id="2_jscy8"]
 [ext_resource type="Texture2D" uid="uid://2j1lucdnxcuj" path="res://assets/sprites/spike_tileset.png" id="2_trceg"]
+[ext_resource type="AudioStream" uid="uid://hh6ysejag4m" path="res://assets/audio/music/volcano.ogg" id="3_pm3ni"]
 [ext_resource type="PackedScene" uid="uid://b143qyca7ba5" path="res://scenes/anchor.tscn" id="3_sugp2"]
 [ext_resource type="Texture2D" uid="uid://bceguyced3iwh" path="res://assets/sprites/background_tile.png" id="4_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://d0c8ckfwky8kp" path="res://scenes/cursor.tscn" id="4_jyhfs"]
+[ext_resource type="AudioStream" uid="uid://diemxrl7xwp71" path="res://assets/audio/music/freedom.ogg" id="4_y6deb"]
+[ext_resource type="AudioStream" uid="uid://2y275l4mxuhe" path="res://assets/audio/sfx/flag.wav" id="5_og1vs"]
 [ext_resource type="Script" uid="uid://b6enfej1g1pcw" path="res://scripts/fader.gd" id="5_tbgi4"]
+[ext_resource type="AudioStream" uid="uid://d211eg7lfpwyc" path="res://assets/audio/sfx/sizzle.wav" id="6_2wyq8"]
 [ext_resource type="PackedScene" uid="uid://dm0gln7oqt738" path="res://scenes/checkpoint.tscn" id="6_tefeu"]
+[ext_resource type="AudioStream" uid="uid://cg6xgci8g4vyd" path="res://assets/audio/sfx/squelch.wav" id="7_vxglm"]
 [ext_resource type="PackedScene" uid="uid://dta8o7pnus7hy" path="res://scenes/magma_anchor.tscn" id="8_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://5aewqofpni6" path="res://scenes/speed_anchor.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://cu7elsjswrkhf" path="res://scenes/rainbow_anchor.tscn" id="9_jkv2x"]
@@ -16,6 +22,12 @@
 [ext_resource type="Texture2D" uid="uid://davau3geieoqd" path="res://assets/sprites/rainbow_trail.png" id="11_eb6dy"]
 [ext_resource type="FontFile" uid="uid://bynsav1hwryts" path="res://assets/fonts/editundo.ttf" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://c5muixfk8tgfh" path="res://scripts/rainbow_trail.gd" id="12_trceg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cus8"]
+size = Vector2(213, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jscy8"]
+size = Vector2(19, 207)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_muem4"]
 texture = ExtResource("4_jbj1t")
@@ -1198,6 +1210,45 @@ font = ExtResource("12_eb6dy")
 [node name="Main" type="Node2D" unique_id=1309191250]
 script = ExtResource("1_a8y0u")
 
+[node name="Music" type="Node" parent="." unique_id=32926927]
+
+[node name="ConcreteMusic" type="AudioStreamPlayer" parent="Music" unique_id=1567021755]
+stream = ExtResource("2_jscy8")
+autoplay = true
+parameters/looping = true
+
+[node name="VolcanoMusic" type="AudioStreamPlayer" parent="Music" unique_id=833261548]
+stream = ExtResource("3_pm3ni")
+volume_db = -17.772
+parameters/looping = true
+
+[node name="VolcanoTrigger" type="Area2D" parent="Music" unique_id=917387049]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Music/VolcanoTrigger" unique_id=1663616503]
+position = Vector2(3759.5, -1372)
+shape = SubResource("RectangleShape2D_2cus8")
+
+[node name="FreedomMusic" type="AudioStreamPlayer" parent="Music" unique_id=1836819618]
+stream = ExtResource("4_y6deb")
+volume_db = -4.561
+parameters/looping = true
+
+[node name="FreedomTrigger" type="Area2D" parent="Music" unique_id=500729285]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Music/FreedomTrigger" unique_id=856577070]
+position = Vector2(9459.5, 1183.5)
+shape = SubResource("RectangleShape2D_jscy8")
+
+[node name="FlagSFX" type="AudioStreamPlayer" parent="Music" unique_id=1620612982 groups=["flag"]]
+stream = ExtResource("5_og1vs")
+volume_db = 0.2
+
+[node name="SizzleSFX" type="AudioStreamPlayer" parent="Music" unique_id=781132061 groups=["sizzle"]]
+stream = ExtResource("6_2wyq8")
+
+[node name="SquelchSFX" type="AudioStreamPlayer" parent="Music" unique_id=1657860946 groups=["squelch"]]
+stream = ExtResource("7_vxglm")
+
 [node name="Fader" type="CanvasLayer" parent="." unique_id=1235757295]
 script = ExtResource("5_tbgi4")
 
@@ -1339,6 +1390,7 @@ position = Vector2(-110, 0)
 
 [node name="Frog" parent="Gameplay" unique_id=1809645032 instance=ExtResource("1_o5qli")]
 unique_name_in_owner = true
+z_index = 0
 position = Vector2(-88, -54)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1362966197]
@@ -1408,3 +1460,6 @@ offset_right = -3455.0
 offset_bottom = 538.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="body_entered" from="Music/VolcanoTrigger" to="." method="_on_volcano_trigger_body_entered"]
+[connection signal="body_entered" from="Music/FreedomTrigger" to="." method="_on_freedom_trigger_body_entered"]

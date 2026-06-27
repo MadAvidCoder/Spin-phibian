@@ -12,17 +12,20 @@ func _ready():
 
 func on_grabbed():
 	super.on_grabbed()
+	sizzle.play()
 	sprite.play("heating")
 	timer.stop()
 
 func on_released():
 	super.on_released()
+	sizzle.stop()
 	sprite.pause()
 	timer.start(reset_time)
 
 func _on_animation_finished():
 	if sprite.animation == "heating" and is_grabbed:
 		frog.respawn()
+		sizzle.stop()
 
 func _on_timer_timeout():
 	sprite.play("idle")
