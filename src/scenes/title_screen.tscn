@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://csgvv7t3jfw6h" path="res://assets/sprites/frog-Sheet.png" id="2_s4lrb"]
 [ext_resource type="Texture2D" uid="uid://bgj2hidoxg36h" path="res://assets/sprites/grass tileset.png" id="3_mgrm8"]
 [ext_resource type="Script" uid="uid://it58aike7i4h" path="res://scripts/title_sprite.gd" id="4_dc4i4"]
+[ext_resource type="Texture2D" uid="uid://bml1gsxwqateu" path="res://assets/sprites/title.png" id="6_e54dn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7r44n"]
 atlas = ExtResource("1_fgkus")
@@ -107,10 +108,10 @@ color = Color(0.53333336, 0.8235294, 1, 1)
 metadata/_edit_lock_ = true
 
 [node name="PlayButton" type="TextureButton" parent="." unique_id=1337999006]
-offset_left = 1299.0
-offset_top = 1200.0001
-offset_right = 1363.0
-offset_bottom = 1227.0001
+offset_left = 573.0
+offset_top = 929.0001
+offset_right = 637.0
+offset_bottom = 956.0001
 scale = Vector2(10, 10)
 texture_normal = SubResource("AtlasTexture_7r44n")
 texture_pressed = SubResource("AtlasTexture_sa3yf")
@@ -124,15 +125,21 @@ scale = Vector2(0.99999994, 0.99999994)
 gizmo_extents = 25.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=2088454749]
-position = Vector2(2773.9995, 1397)
-scale = Vector2(16, 16)
+z_index = 5
+position = Vector2(1687.0001, 1020)
+scale = Vector2(11.833333, 11.833333)
 sprite_frames = SubResource("SpriteFrames_dc4i4")
 animation = &"grapple"
 script = ExtResource("4_dc4i4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2132382360]
-position = Vector2(2932.9998, 1664.0001)
-scale = Vector2(19.225, 19.225)
+position = Vector2(1748, 1211)
+scale = Vector2(13.425005, 13.425003)
 texture = SubResource("AtlasTexture_alp7y")
+
+[node name="title" type="Sprite2D" parent="." unique_id=1395889653]
+position = Vector2(1143.3126, 595.875)
+scale = Vector2(10.755729, 10.339062)
+texture = ExtResource("6_e54dn")
 
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
