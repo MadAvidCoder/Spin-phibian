@@ -1507,29 +1507,29 @@ a/D -> Walk"
 label_settings = SubResource("LabelSettings_n83mn")
 
 [node name="Label2" type="Label" parent="Tutorial Labels" unique_id=750004037]
-offset_left = 169.0
-offset_top = -148.0
-offset_right = 453.0
-offset_bottom = -97.0
+offset_left = 143.0
+offset_top = -114.0
+offset_right = 427.0
+offset_bottom = -27.0
 text = "This is an anchor.
 Hold left click while close to swing.
 Release to fling!"
 label_settings = SubResource("LabelSettings_n83mn")
 
 [node name="Label3" type="Label" parent="Tutorial Labels" unique_id=59536832]
-offset_left = 373.0
-offset_top = -289.0
-offset_right = 790.0
-offset_bottom = -238.0
+offset_left = 389.0
+offset_top = -232.0
+offset_right = 806.0
+offset_bottom = -181.0
 text = "You can Chain multiple swings back to back.
 dont worry, if you fall, you'll come back at the flag."
 label_settings = SubResource("LabelSettings_n83mn")
 
 [node name="Label4" type="Label" parent="Tutorial Labels" unique_id=1014893492]
-offset_left = 1308.0
-offset_top = -425.0
-offset_right = 1725.0
-offset_bottom = -374.0
+offset_left = 1234.0
+offset_top = -402.0
+offset_right = 1651.0
+offset_bottom = -351.0
 text = "Some anchors are special.
 when you encounter a new one, try it out!"
 label_settings = SubResource("LabelSettings_n83mn")
