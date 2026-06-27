@@ -1,0 +1,135 @@
+[gd_scene format=3 uid="uid://cm8jp1i3tvx1v"]
+
+[ext_resource type="Script" uid="uid://iuyymtgfqqm5" path="res://scripts/leaderboard.gd" id="1_mrg81"]
+[ext_resource type="Texture2D" uid="uid://bi2h13m3hrhx8" path="res://assets/sprites/close.png" id="2_wgq7h"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_wgq7h"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_wgq7h"]
+events = [SubResource("InputEventKey_wgq7h")]
+
+[sub_resource type="Theme" id="Theme_wgq7h"]
+default_font_size = 45
+
+[node name="Leaderboard" type="Control" unique_id=888849807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_mrg81")
+leaderboard_internal_name = "spin-phibian-leaderboard"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1249152833]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.11764706, 0.2509804, 0.26666668, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=27787836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Close" type="TextureButton" parent="MarginContainer" unique_id=1103631793]
+layout_mode = 2
+texture_normal = ExtResource("2_wgq7h")
+texture_pressed = ExtResource("2_wgq7h")
+texture_hover = ExtResource("2_wgq7h")
+texture_disabled = ExtResource("2_wgq7h")
+texture_focused = ExtResource("2_wgq7h")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=910503413]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LeaderboardLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1600694687]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -30
+theme_override_font_sizes/font_size = 82
+text = "LEADERBOARD
+"
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1821863710]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 40
+text = "Loading..."
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=652317844]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Entries" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1569777008]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1198834794]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=68337601]
+layout_mode = 2
+
+[node name="Username" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1013351713]
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 44
+placeholder_text = " USERNAME"
+
+[node name="Password" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=440311094]
+custom_minimum_size = Vector2(600, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 44
+placeholder_text = " Password"
+secret = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1617807651]
+custom_minimum_size = Vector2(80, 0)
+custom_maximum_size = Vector2(120, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Submit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1233966871]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 49
+disabled = true
+shortcut = SubResource("Shortcut_wgq7h")
+text = "Submit!
+Best time: 12:23"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="." unique_id=919975316]
+title = "Error"
+size = Vector2i(650, 300)
+unresizable = true
+always_on_top = true
+content_scale_size = Vector2i(2, 2)
+theme = SubResource("Theme_wgq7h")
+dialog_autowrap = true
+
+[connection signal="pressed" from="MarginContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Submit" to="." method="_on_submit_pressed"]

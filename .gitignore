@@ -1,8 +1,9 @@
 src/.godot/
 src/.import/
 src/.idea/
-src/addons/
+src/addons/godot_super-wakatime
 src/.vscode/
 *.tmp
 .nomedia
 ~*.dll
+src/addons/talo/settings.cfg

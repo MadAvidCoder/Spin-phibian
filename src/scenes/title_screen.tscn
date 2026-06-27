@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bgj2hidoxg36h" path="res://assets/sprites/grass tileset.png" id="3_mgrm8"]
 [ext_resource type="Script" uid="uid://it58aike7i4h" path="res://scripts/title_sprite.gd" id="4_dc4i4"]
 [ext_resource type="Texture2D" uid="uid://bml1gsxwqateu" path="res://assets/sprites/title.png" id="6_e54dn"]
+[ext_resource type="Texture2D" uid="uid://cm40pgajayu4t" path="res://assets/sprites/leaderboard.png" id="7_3yumr"]
+[ext_resource type="PackedScene" uid="uid://cm8jp1i3tvx1v" path="res://scenes/leaderboard.tscn" id="8_cs5ya"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7r44n"]
 atlas = ExtResource("1_fgkus")
@@ -141,4 +143,20 @@ position = Vector2(1143.3126, 595.875)
 scale = Vector2(10.755729, 10.339062)
 texture = ExtResource("6_e54dn")
 
+[node name="LeaderButton" type="TextureButton" parent="." unique_id=1932639775]
+offset_left = 45.0
+offset_top = 1212.0
+offset_right = 225.0
+offset_bottom = 1397.0
+texture_normal = ExtResource("7_3yumr")
+texture_pressed = ExtResource("7_3yumr")
+texture_hover = ExtResource("7_3yumr")
+texture_disabled = ExtResource("7_3yumr")
+texture_focused = ExtResource("7_3yumr")
+
+[node name="Leaderboard" parent="." unique_id=888849807 instance=ExtResource("8_cs5ya")]
+visible = false
+z_index = 11
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="LeaderButton" to="Leaderboard" method="_on_leader_button_pressed"]

@@ -59,6 +59,9 @@ jobs:
           chmod +x "$GODOT_BIN"
           echo "GODOT_BIN=$GODOT_BIN" >> $GITHUB_ENV
       
+      - name: Create Talo cfg
+        run: echo '${{ secrets.TALO_CONFIG }}' > src/addons/talo/settings.cfg
+
       - name: Import Project
         run: |
           "$GODOT_BIN" --headless --path src --import

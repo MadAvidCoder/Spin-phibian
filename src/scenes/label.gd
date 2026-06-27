@@ -15,7 +15,6 @@ func start():
 	time = 0
 	started = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if started:
 		time += delta
@@ -28,6 +27,9 @@ func format_time(total_seconds: float) -> String:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("frog"):
+		if time < Globals.best_time or Globals.best_time == -1:
+			Globals.best_time = time
+		
 		started = false
 		var tweena = create_tween()
 		tweena.tween_property(freedom_music, "volume_db", -80.0, 2.5)

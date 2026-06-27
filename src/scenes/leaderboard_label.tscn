@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bc7admia6gwdh"]
+
+[ext_resource type="Script" uid="uid://c4au7jdo3cf6l" path="res://scenes/leaderboard_label.gd" id="1_7jnqf"]
+
+[node name="Label" type="Label" unique_id=126765011]
+offset_right = 40.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 55
+text = "{pos}. {username} - {score}"
+script = ExtResource("1_7jnqf")
