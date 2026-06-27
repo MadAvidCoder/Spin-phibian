@@ -92,6 +92,7 @@ script = ExtResource("1_ywqth")
 metadata/_custom_type_script = "uid://comwpofdan7ag"
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=465377329]
+position = Vector2(0, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=609945021]
 position = Vector2(0, -21)

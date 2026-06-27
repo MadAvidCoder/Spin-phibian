@@ -69,9 +69,10 @@ func on_anchor_clicked(targ_anchor: Anchor):
 	if state in [States.GROUND, States.AIR, States.FLOATING, States.JUMPING]:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
-			
 			raycast.target_position = to_local(anchor.global_position)
+			raycast.force_raycast_update()
 			if raycast.is_colliding():
+				print(raycast.get_collider().name)
 				return
 			
 			change_state(States.TONGUING)
@@ -202,11 +203,12 @@ func process_state(delta: float):
 			
 			if not is_on_floor() and not has_left_floor:
 				has_left_floor = true
+				print("left_floor")
 			
-			if is_on_wall() or is_on_ceiling():
-				change_state(States.AIR)
-			if is_on_floor() and has_left_floor:
-				change_state(States.GROUND)
+			#if (is_on_wall() or is_on_ceiling()) and has_left_floor:
+				#change_state(States.AIR)
+			#if is_on_floor() and has_left_floor:
+				#change_state(States.GROUND)
 			
 			raycast.target_position = to_local(anchor.global_position)
 			if raycast.is_colliding():
