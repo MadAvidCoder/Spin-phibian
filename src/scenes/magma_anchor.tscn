@@ -61,7 +61,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"heating",
-"speed": 3.0
+"speed": 2.5
 }, {
 "frames": [{
 "duration": 1.0,
