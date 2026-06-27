@@ -462,10 +462,10 @@ position = Vector2(294, 238)
 [node name="Checkpoints" type="Node2D" parent="Gameplay" unique_id=1590479324]
 
 [node name="Checkpoint" parent="Gameplay/Checkpoints" unique_id=1289367084 instance=ExtResource("6_tefeu")]
-position = Vector2(476, 461)
+position = Vector2(476, 480)
 
 [node name="StartCheckpoint" parent="Gameplay" unique_id=1000476754 instance=ExtResource("6_tefeu")]
-position = Vector2(280, 457)
+position = Vector2(280, 480)
 
 [node name="Frog" parent="Gameplay" unique_id=1809645032 instance=ExtResource("1_o5qli")]
 unique_name_in_owner = true

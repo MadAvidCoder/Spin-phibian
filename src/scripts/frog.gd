@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 		respawn()
 
 func set_checkpoint(point: Checkpoint):
+	checkpoint.sprite.play("going_down")
 	checkpoint = point
 
 func _physics_process(delta: float) -> void:
