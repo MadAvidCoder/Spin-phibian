@@ -50,8 +50,8 @@ func set_checkpoint(point: Checkpoint):
 	checkpoint = point
 
 func _physics_process(delta: float) -> void:
-	if state != States.GOD and Input.is_action_just_pressed("god"):
-		change_state(States.GOD)
+	#if state != States.GOD and Input.is_action_just_pressed("god"):
+	#	change_state(States.GOD)
 	process_state(delta)
 	move_and_slide()
 	
