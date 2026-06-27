@@ -15,6 +15,7 @@ const MAIN = preload("uid://b25a2beyym67k")
 
 func _ready() -> void:
 	orbit_radius = (frog.global_position - marker.global_position).length()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _process(delta: float) -> void:
 	if played:

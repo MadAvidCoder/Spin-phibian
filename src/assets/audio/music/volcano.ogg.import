@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/volcano.ogg-e4e3ac6527f0e8f76ed69360c45566d8.
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
