@@ -34,6 +34,7 @@ const SPEED: float = 200
 @onready var fader: CanvasLayer = $"../../Fader"
 @onready var checkpoint: Checkpoint = $"../StartCheckpoint"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
+@onready var raycast: RayCast2D = $RayCast2D
 
 var has_left_floor: bool = false
 
@@ -67,6 +68,10 @@ func on_anchor_clicked(targ_anchor: Anchor):
 	if state == States.GROUND or state == States.AIR or state == States.FLOATING:
 		if targ_anchor.global_position.distance_to(global_position) <= pull_dist:
 			anchor = targ_anchor
+			
+			raycast.target_position = to_local(anchor.global_position)
+			if raycast.is_colliding():
+				return
 			
 			change_state(States.TONGUING)
 			tongue.extend(func():
