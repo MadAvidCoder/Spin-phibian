@@ -41,8 +41,10 @@ const SPEED: float = 200
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var flag_sfx: AudioStreamPlayer = $"../../Music/FlagSFX"
 @onready var squelch_sfx: AudioStreamPlayer = $"../../Music/SquelchSFX"
+@onready var anim: AnimationPlayer = $AnimationPlayer
 
 var has_left_floor: bool = false
+var cancellable: bool = true
 
 func _ready() -> void:
 	global_position = checkpoint.marker.global_position
@@ -118,6 +120,8 @@ func enter_state():
 			sprite.play("grapple")
 		States.GROUND:
 			sprite.play("idle")
+			anim.play("jump_squish")
+			cancellable = false
 		States.GRAPPLED:
 			anchor.on_grabbed()
 			has_left_floor = false
@@ -187,6 +191,13 @@ func process_state(delta: float):
 				sprite.flip_h = false
 				collision_shape.position.x = 3.0
 			velocity.x = input_direction * SPEED
+			if not anim.is_playing():
+				cancellable = true
+			if cancellable:
+				if velocity.x != 0:
+					anim.play("squish")
+				else:
+					anim.stop()
 			
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = jump_velocity

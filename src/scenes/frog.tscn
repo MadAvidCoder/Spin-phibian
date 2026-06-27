@@ -79,6 +79,96 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n83mn"]
 size = Vector2(14, 9)
 
+[sub_resource type="Animation" id="Animation_1g2vb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ybftx"]
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1.5691684, 1, 1),
+"update": 1,
+"values": [1.0, 0.8, 0.8, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1.56, 1, 1),
+"update": 1,
+"values": [0.0, 2.4, 2.4, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_rq8tc"]
+resource_name = "squish"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.23333333, 0.33333334),
+"transitions": PackedFloat32Array(1, 1.5691684, 1, 1),
+"update": 1,
+"values": [1.0, 0.87, 0.87, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.23333333, 0.33333334),
+"transitions": PackedFloat32Array(1, 1.56, 1, 1),
+"update": 1,
+"values": [0.0, 1.2, 1.2, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1g2vb"]
+_data = {
+&"RESET": SubResource("Animation_1g2vb"),
+&"jump_squish": SubResource("Animation_ybftx"),
+&"squish": SubResource("Animation_rq8tc")
+}
+
 [node name="Frog" type="CharacterBody2D" unique_id=1809645032 groups=["frog"]]
 z_index = 3
 collision_mask = 18
@@ -88,7 +178,7 @@ gravity = Vector2(0, 900)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1201950172]
 sprite_frames = SubResource("SpriteFrames_2cus8")
-animation = &"death"
+animation = &"idle"
 
 [node name="Tongue" type="Node2D" parent="." unique_id=1559968155]
 script = ExtResource("3_rq8tc")
@@ -100,3 +190,7 @@ shape = SubResource("RectangleShape2D_n83mn")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=257711888]
 target_position = Vector2(0, -43)
 collision_mask = 18
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1128889437]
+root_node = NodePath("../RayCast2D")
+libraries/ = SubResource("AnimationLibrary_1g2vb")
