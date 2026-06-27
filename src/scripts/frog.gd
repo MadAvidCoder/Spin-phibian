@@ -35,6 +35,8 @@ const SPEED: float = 200
 @onready var checkpoint: Checkpoint = $"../StartCheckpoint"
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
+var has_left_floor: bool = false
+
 func _ready() -> void:
 	global_position = checkpoint.marker.global_position
 
@@ -101,6 +103,7 @@ func enter_state():
 			sprite.play("idle")
 		States.GRAPPLED:
 			anchor.on_grabbed()
+			has_left_floor = false
 		States.DEAD:
 			velocity = Vector2.ZERO
 
@@ -185,3 +188,11 @@ func process_state(delta: float):
 			sprite.flip_h = false
 			collision_shape.position.x = 3.0
 			sprite.rotation = sprite.global_position.direction_to(anchor.global_position).angle() + deg_to_rad(180)
+			
+			if not is_on_floor() and not has_left_floor:
+				has_left_floor = true
+			
+			if is_on_wall() or is_on_ceiling():
+				change_state(States.AIR)
+			if is_on_floor() and has_left_floor:
+				change_state(States.GROUND)
