@@ -3,6 +3,7 @@ extends CharacterBody2D
 enum States {
 	GROUND,
 	AIR,
+	JUMPING,
 	FLOATING,
 	TONGUING,
 	GRAPPLED,
@@ -140,14 +141,14 @@ func process_state(delta: float):
 			elif is_on_ceiling() or is_on_wall():
 				change_state(States.AIR)
 		
-		States.AIR:
+		States.JUMPING:
 			velocity += gravity * delta
 			var input_direction = Input.get_axis("left", "right")
 
 			velocity.x = move_toward(
 				velocity.x,
 				input_direction * SPEED,
-				SPEED * 3.0 * delta
+				SPEED * 4.3 * delta
 			)
 
 			if input_direction == 1:
@@ -156,6 +157,12 @@ func process_state(delta: float):
 			elif input_direction == -1:
 				sprite.flip_h = false
 				collision_shape.position.x = 3.0
+			
+			if is_on_floor():
+				change_state(States.GROUND)
+		
+		States.AIR:
+			velocity += gravity * delta
 			
 			if is_on_floor():
 				change_state(States.GROUND)
@@ -172,7 +179,7 @@ func process_state(delta: float):
 			
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = jump_velocity
-				change_state(States.AIR)
+				change_state(States.JUMPING)
 				return
 			
 			if not is_on_floor():
