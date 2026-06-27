@@ -88,6 +88,7 @@ func on_anchor_clicked(targ_anchor: Anchor):
 			
 			change_state(States.TONGUING)
 			tongue.extend(func():
+				squelch_sfx.pitch_scale = randf_range(0.73, 1.23)
 				squelch_sfx.play()
 				if state == States.TONGUING: change_state(States.GRAPPLED)
 				else: tongue.retract(func(): squelch_sfx.play()))
